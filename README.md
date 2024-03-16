@@ -9,13 +9,13 @@
 
 **Timetable Creator Proposal** 
 
-Zen Inaba 400541114
+Zen Inaba 
 
-Moses Lei 400528055
+Moses Lei 
 
-Zhao Beier 400511533
+Zhao Beier 
 
-Yingjie Zou 400503728
+Yingjie Zou 
 
 Section: C04
 #
