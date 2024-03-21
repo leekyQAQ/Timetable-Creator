@@ -5,21 +5,48 @@ timeTable::timeTable(vector<event >timetable)
 }
 bool timeTable::timeConfilctCheck()
 {
+	bool conflict=false;
+
 	for (int day = 1; day <= 7; day++)
 	{
-		int numberOfEventInDay;
+		vector<event> eventInDay;
+		int numberOfEventInDay=0;
 		for (event num : m_timeTable)
 		{
 			if (num.getEventDay() == day)
 			{
 				numberOfEventInDay++;
+				
+				eventInDay.push_back(num);
 			}
 		}
-		for (int i = 0; i <= numberOfEventInDay; i++)
+		if (numberOfEventInDay >1)
 		{
+			for (int i = 0; i < numberOfEventInDay; i++)
+			{
+				
+				for (int j = 0; j < numberOfEventInDay; j++)
+				{
+					conflict = false;
+					if (eventInDay[i].getEventCode() != eventInDay[j].getEventCode())
+					{
+						if(eventInDay[j].getEventEnd()<eventInDay[i].getEventEnd()&& eventInDay[j].getEventEnd() > eventInDay[i].getEventStart()) { conflict = true; }
 
+						if (eventInDay[j].getEventStart() < eventInDay[i].getEventEnd() && eventInDay[j].getEventStart() > eventInDay[i].getEventStart()) { conflict = true; }
+
+						if (conflict == true)
+						{
+							
+							cout << "Conflict between " << eventInDay[i].getEventName() << " and " << eventInDay[j].getEventName() << endl;
+							return conflict;
+						}
+					}
+				}
+
+			}
 		}
 	}
+	
 }
 void timeTable::saveTimetable(fstream& file)
 {
