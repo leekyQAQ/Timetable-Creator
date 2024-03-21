@@ -3,11 +3,13 @@
 class Admin : public User
 {
 public:
-	void log_in();
-	void sign_in();
+	Admin(){}
+	void login();
+	void signin();
 	void addID();
 	void addCourses();
 	void addMeeting();
+	void saveInfo();
 
 
 };
