@@ -10,8 +10,8 @@ protected:
 public:
 	User();
 	User(string password, string department, int id);
-	virtual void login();
-	virtual void signin();
+	virtual void login(fstream &file);
+	virtual void signin(fstream &file);
 	
 };
 
