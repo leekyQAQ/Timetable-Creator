@@ -13,12 +13,12 @@ class Student
 public:
     Student();
     ~Student();
-    Student(string department);
+    Student(string department, string password, int id);
     string Getdepartment() {return m_department; };
     void Setdepartment(string department) { m_department = department; };
     // Additional methods for student-specific functionality
-    void displayTimetable();
-    void chooseTimeslot();
-    // ... other methods as needed
+    void readTimetableFromFile(const string& filename);
+    void generatePersonalTimetable();
+    void resolveConflicts();
 };
 ostream& operator<<(ostream& out, Student timetableS);
