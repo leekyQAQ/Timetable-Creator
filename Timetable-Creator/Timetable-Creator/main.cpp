@@ -7,6 +7,10 @@ using namespace std;
 
 int main() {
     // Open the file
+    int choice;
+    cout << "Welcome to the program" << endl;
+    cout << "" << endl;
+
     fstream file("Studentdata.txt");
     User user;
    
@@ -14,4 +18,5 @@ int main() {
     user.login(file);
 
     file.close();
+
 }

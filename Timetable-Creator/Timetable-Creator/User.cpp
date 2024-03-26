@@ -5,13 +5,11 @@
 using namespace std;
 User::User() {
 	m_password = "";
-	m_department = "";
 	m_id = 0;
 }
 
-User::User(string password, string department, int id) {
+User::User(string password, int id) {
 	m_password = password;
-	m_department = department;
 	m_id = id;
 }
 
@@ -66,9 +64,8 @@ void User::signin(fstream& file) {
 			break;
 		}
 	}
-
-	if (idExists) {
-		cout << "User ID already exists. Please log in or choose a different ID." << endl;
+	if (!idExists) {
+		cout << "User ID does not exists. Please choose a different ID." << endl;
 		return;
 	}
 
@@ -78,6 +75,6 @@ void User::signin(fstream& file) {
 	cin >> newPassword;
 
 	// Save the new user to the file
-	file << inputId << " " << newPassword << endl;
+	file << " " << newPassword << endl;
 	cout << "Sign-up successful! You can now log in." << endl;
 }
