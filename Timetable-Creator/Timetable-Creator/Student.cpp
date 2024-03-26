@@ -1,15 +1,14 @@
 #include "Student.h"
+#include <iostream>
+using namespace std;
 Student::Student() {
-
+    m_department = " ";
 }
 Student::~Student() {
 
 }
-void Student::Sing_in() {
-
-}
-void Student::Log_in() {
-
+Student::Student(string department) {
+    department = " ";
 }
 void Student::displayTimetable() {
     // Similar to the Teacher's method
@@ -22,4 +21,9 @@ void Student::displayTimetable() {
 void Student::chooseTimeslot() {
     // Implement logic for a student to choose a timeslot
     // This might involve presenting available times and letting the student select one
+}
+ostream& operator<<(ostream& out, Student timetableS) {
+
+    out << "The time table: " << endl;
+	return out;
 }
