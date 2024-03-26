@@ -47,5 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AdminID.txt" />
+    <Text Include="Event.txt" />
   </ItemGroup>
 </Project>
