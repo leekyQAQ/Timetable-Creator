@@ -31,7 +31,7 @@ void User::login(fstream& file) {
 	}
 	// than check the password in the same file to see if the password is correct
 	if (!idFound) {
-		cout << "User ID not found. Please try again or sign up." << endl;
+		cout << "User ID not found. Please try again." << endl;
 		return;
 	}
 	string inputPassword;
@@ -50,10 +50,11 @@ void User::login(fstream& file) {
 
 void User::signin(fstream& file) {
 	int inputId;
-	cout << "Enter your desired user ID: ";
+	/// ask the user to enter their id The id must already exist in the file
+	cout << "Enter your user ID: ";
 	cin >> inputId;
 
-	// Check if the ID already exists in the file
+	// Check if the ID already exists in the file if not tell them that the id is invalid and try again
 	int storedId;
 	string storedPassword;
 	bool idExists = false;
@@ -69,12 +70,16 @@ void User::signin(fstream& file) {
 		return;
 	}
 
-	// Ask the user to create a password
+	// if the id exist in the file and don't have an passwrod attach to it than Ask the user to create a password
 	string newPassword;
 	cout << "Create a password: " ;
 	cin >> newPassword;
 
-	// Save the new user to the file
-	file << " " << newPassword << endl;
+	// Save the new user to the file make sure the the password is linked prited beside the user id since there will be many id with no password attached to it 
+	ofstream file_out(file, ios_base::app);
+	file_out << inputId << " " << newPassword << endl;
+	file_out.close();
+
 	cout << "Sign-up successful! You can now log in." << endl;
+
 }
