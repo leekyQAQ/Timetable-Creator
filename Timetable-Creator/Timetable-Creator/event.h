@@ -3,6 +3,7 @@
 #include<vector>
 #include<fstream>
 #include<iostream>
+
 using namespace std;
 class event
 {
@@ -27,10 +28,11 @@ public:
 	void setEventStart(double start) { m_start = start; }
 	void setEventEnd(double end) { m_end = end; }
 	void setEventDay(int day) { m_day = day; }
-
 	void addParticipants(int ID);
 	void deleteParticipants(int ID);
-	void saveEvent(fstream &file);
+
+	void saveEventToFile(fstream &file);
+	//void updateEventToMemory(vector <event> & memory);
 	void out();
 };
 
