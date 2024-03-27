@@ -43,7 +43,7 @@ void Admin::addCourses()
 
 	event course(code, name, participants);
 	fstream file_out("Event.txt");
-	course.saveEvent(file_out);
+	course.saveEventToFile(file_out);
 	file_out.close();
 }
 
@@ -59,6 +59,6 @@ void Admin::addMeeting()
 
 	event course(code, name, participants);
 	fstream file_out("Event.txt");
-	course.saveEvent(file_out);
+	course.saveEventToFile(file_out);
 	file_out.close();
 }
