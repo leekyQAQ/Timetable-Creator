@@ -4,7 +4,7 @@
 class Admin : public User
 {
 public:
-	Admin(){}
+	Admin() : User("12345", 400541114) {}
 	void login();
 	void addID();
 	void addCourses();

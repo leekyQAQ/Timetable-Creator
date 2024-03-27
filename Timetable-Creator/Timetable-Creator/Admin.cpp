@@ -2,6 +2,45 @@
 
 void Admin::login()
 {
+	int id;
+	string pass;
+	bool check = true;
+	//check the user ID
+	while (!check)
+	{
+		cout << "Please enter your ID (-1 to Exit): ";
+		cin >> id;
+
+		if (id == -1)
+			return;
+
+		else if (id != m_id)
+		{
+			cout << "Wrong ID. Try again" << endl;
+			check = false;
+		}
+
+		else
+			check = true;
+	}
+	//check the password
+	while (!check)
+	{
+		cout << "Please enter the password (-1 to exit): ";
+		cin >> pass;
+		if (pass == "-1" )
+			return;
+
+		else if (pass != m_password)
+		{
+			cout << "Wrong password. Try again" << endl;
+			check = false;
+		}
+
+		else
+			check = true;
+	}
+	
 }
 
 
@@ -57,8 +96,8 @@ void Admin::addMeeting()
 	cout << "Enter the meeting name: ";
 	cin >> name;
 
-	event course(code, name, participants);
+	event meeting(code, name, participants);
 	fstream file_out("Event.txt");
-	course.saveEventToFile(file_out);
+	meeting.saveEventToFile(file_out);
 	file_out.close();
 }
