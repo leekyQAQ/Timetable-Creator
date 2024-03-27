@@ -1,11 +1,22 @@
-#include <iostream>
-#include "event.h"       // Include header file for the event class
-#include "timeTable.h"   // Include header file for the timeTable class
-#include <string>
-#include <fstream>       // Include file input/output stream
+#include<iostream>
+#include "event.h"
+#include "User.h"
+#include <fstream>
 using namespace std;
 
-int main()
-{
+
+int main() {
+    // Open the file
+    int choice;
+    cout << "Welcome to the program" << endl;
+    cout << "" << endl;
+
+    fstream file("Studentdata.txt");
+    User user;
    
+    user.signin(file);
+    user.login(file);
+
+    file.close();
+
 }
