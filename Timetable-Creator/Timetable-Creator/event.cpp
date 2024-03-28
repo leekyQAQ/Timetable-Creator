@@ -21,6 +21,7 @@ void event::addParticipants(int ID)
 {
 	m_participants.push_back(ID); 
 }
+
 void event::deleteParticipants(int ID)
 {
 	for (int i = 0; i < m_participants.size(); i++) {
@@ -35,10 +36,10 @@ void event::deleteParticipants(int ID)
 
 
 }
-void event::saveEvent(fstream &file)
+void event::saveEventToFile(fstream &file)
 {
 	// Move the file pointer to the end of the file
-	file.seekp(0, std::ios::end);
+	file.seekp(0, ios::end);
 
 	// Write event-related information to the file
 	// Use getEventCode(), getEventName(), getEventStart(), getEventEnd(), and getEventDay() to retrieve event information
@@ -53,9 +54,21 @@ void event::saveEvent(fstream &file)
 	}
 
 	// Write a newline character to place the new event information on the next line
-	file << std::endl;
+	file << endl;
 
 }
+/*void event::updateEventToMemory(vector<event>& memory)
+{
+	
+	for (int i = 0; i < memory.size(); i++)
+	{
+		if (memory[i].getEventCode() == m_code)
+		{
+			memory[i] = *this;
+		}
+	}
+}*/
+
 void event::out()
 {//a display function for testing. same structure as saveEvent function
 	cout << getEventCode() << " " << getEventName() << " " << getEventStart() << " " << getEventEnd() << " " << getEventDay() << " " << m_participants.size() << " ";

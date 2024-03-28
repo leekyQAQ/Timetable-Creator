@@ -28,6 +28,7 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Teacher.cpp">
+    <ClCompile Include="Admin.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,5 +45,12 @@
     <ClInclude Include="Teacher.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AdminID.txt" />
+    <Text Include="Event.txt" />
   </ItemGroup>
 </Project>
