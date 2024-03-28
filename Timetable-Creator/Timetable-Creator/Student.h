@@ -1,31 +1,32 @@
 #pragma once
 #include "User.h"
-#include "event.h"
-#include <vector>
 #include "timeTable.h"
-#include <fstream>
+#include <vector>
 #include <iostream>
-using namespace std;
+#include <string>
 
-class Student
-{
-    string m_department;
-    vector<string> m_timetable; // This will store your timetable data
+class Student : public User {
+private:
+    std::string m_department; // Student's department
+    timeTable m_timetable; // Full timetable for the department, managed by the timeTable class
+    std::vector<std::string> m_personalTimetable; // Stores the student's personal timetable data
 
 public:
-    Student(); // Assume default constructor is defined elsewhere
-    ~Student(); // Assume destructor is defined elsewhere
-    Student(string department, string password, int id); // Assume this is defined elsewhere
+    Student(); // Default constructor
+    Student(const std::string& department, const std::string& password, int id); // Parameterized constructor
+    virtual ~Student(); // Destructor
 
-    string GetDepartment() { return m_department; }
-    void SetDepartment(string department) { m_department = department; }
+    // Getters and Setters for department
+    std::string GetDepartment() const { return m_department; }
+    void SetDepartment(const std::string& department) { m_department = department; }
 
-    void readTimetableFromFile(const string& department);
-    void generatePersonalTimetable(); // Assume this is defined elsewhere
-    void resolveConflicts(); // Assume this is defined elsewhere
+    // Member functions for timetable management
+    void readTimetableFromFile(const std::string& department);
+    void generatePersonalTimetable();
+    void resolveConflicts();
+    void saveTimetableToFile(const std::string& filename);
 
-    // A method to output the timetable
-    friend ostream& operator<<(ostream& out, const Student& s);
-
-    // Additional methods can be added as necessary
+    // Overloading the insertion (<<) operator to print the personal timetable
+    friend std::ostream& operator<<(std::ostream& out, const Student& student);
 };
+

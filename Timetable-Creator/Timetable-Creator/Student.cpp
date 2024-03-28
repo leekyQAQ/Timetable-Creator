@@ -1,4 +1,7 @@
 #include "Student.h"
+#include <fstream>
+#include <sstream>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 Student::Student() {
@@ -43,20 +46,61 @@ void Student::readTimetableFromFile(const string& department) {
 }
 
 void Student::generatePersonalTimetable() {
-    // Use the data stored from the file to create a timetable
-    // for user they just type in the course code and then the vector will add their id in
-    // Check for conflicts and call resolveConflicts if necessary
-    // use vector to save it 
+    // Shows all courses available for selection
+    // For now, let's just assume we display courses directly from m_timetable vector
+    for (int i = 0; i < m_timetable.size(); ++i) {
+        std::cout << (i + 1) << ": " << m_timetable[i] << std::endl;
+    }
+
+    // Asks the student for their course selection
+    std::cout << "Enter the course number to add to your timetable, or 0 to finish:" << std::endl;
+    int choice;
+    std::cin >> choice;
+
+    // Process selection until the user decides to finish with 0
+    while (choice != 0) {
+        if (choice > 0 && choice <= m_timetable.size()) {
+            // Add course to personal timetable
+            // We're directly storing course strings here, but you'll need to adjust if using event objects
+            m_personalTimetable.push_back(m_timetable[choice - 1]);
+        }
+        else {
+            std::cout << "Invalid course number. Please try again." << std::endl;
+        }
+        std::cin >> choice;
+    }
+
+    // Assuming resolveConflicts() is properly defined elsewhere
+    resolveConflicts();
+
+    // Sort the personal timetable (if required). This is just a placeholder.
+    // Actual sorting would depend on how your events are structured.
 }
 
 void Student::resolveConflicts() {
     // Implement logic to resolve any conflicts in the timetable
 }
+void Student::saveTimetableToFile(const std::string& filename) {
+    // Save the personal timetable to the file
+    std::ofstream file(filename);
 
-ostream& operator<<(ostream& out, const Student& s) {
-    out << "Timetable for department " << s.m_department << ":\n";
-    for (const auto& entry : s.m_timetable) {
-        out << entry << endl;
+    // Check if we're able to open the file
+    if (!file.is_open()) {
+        std::cerr << "Could not open file to save timetable." << endl;
+        return;
+    }
+
+    // Assuming event objects have a method to convert to a string for file output
+    for (const auto& course : m_personalTimetable) {
+        file << course.toString() << endl; // You will need to replace 'toString()' with actual method
+    }
+
+    file.close();
+}
+// Overloads the stream insertion operator to print the personal timetable
+ostream& operator<<(ostream& out, const Student& student) {
+    for (const auto& courseStr : student.m_personalTimetable) {
+        out << courseStr << endl;
     }
     return out;
 }
