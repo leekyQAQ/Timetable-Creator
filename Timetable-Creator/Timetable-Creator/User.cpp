@@ -52,10 +52,13 @@ void User::login(fstream& file) {
 
 
 void User::signin(fstream& file) {
-    // Variable to store the input ID
+    // Variables 
     int inputId;
+    int storedId;
+    string storedPassword;
+    bool idExists = false;
 
-    // Ask the user to enter their ID
+    // User input
     cout << "Enter your user ID: ";
     cin >> inputId;
 
@@ -63,21 +66,16 @@ void User::signin(fstream& file) {
     vector<int> ids;
     vector<string> passwords;
 
-    // Variables to store the ID and password read from the file
-    int storedId;
-    string storedPassword;
-
-    // Flag to check if the input ID exists in the file
-    bool idExists = false;
-
-    // Read the IDs and passwords from the file into the vectors
+    // Read the IDs and passwords from the file into the vectors and checks if the id is real
     while (file >> storedId >> storedPassword) {
         ids.push_back(storedId);  // Add the ID to the IDs vector
         passwords.push_back(storedPassword);  // Add the password to the passwords vector
         if (storedId == inputId) {
-            idExists = true;  // If the ID exists in the file, set the flag to true
+            idExists = true;  
         }
     }
+    file.clear();
+    file.seekg(0, ios::beg);
 
     // If the input ID does not exist in the file, print an error message and return
     if (!idExists) {
@@ -91,15 +89,13 @@ void User::signin(fstream& file) {
     cin >> newPassword;
 
     // Loop through the IDs vector
+    
     for (int i = 0; i < ids.size(); i++) {
-        // If the ID is the input ID, update the password in the passwords vector
         if (ids[i] == inputId) {
             passwords[i] = newPassword;
         }
-        // Write the ID and password to the file
         file << ids[i] << " " << passwords[i] << endl;
     }
-
-    // Print a success message
+    
     cout << "Password Set successfully. You can now log in." << endl;
 }

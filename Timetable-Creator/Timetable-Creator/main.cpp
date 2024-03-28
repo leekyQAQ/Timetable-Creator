@@ -24,6 +24,22 @@ int main() {
         }
         file.close();
     }
+    else if (choice == 2) {
+        fstream file("Teacherdata.txt");
+        User user;
+        cout << "Login(1)/ Signup(2)" << endl;
+        cin >> choice;
+        if (choice == 1) {
+            user.login(file);
+        }
+        else {
+            user.signin(file);
+        }
+        file.close();
+    }
+    else {
+        cout << "placeholder" << endl;
+    }
 
 
 }
