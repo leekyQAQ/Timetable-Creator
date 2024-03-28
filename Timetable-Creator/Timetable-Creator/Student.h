@@ -10,15 +10,22 @@ using namespace std;
 class Student
 {
     string m_department;
+    vector<string> m_timetable; // This will store your timetable data
+
 public:
-    Student();
-    ~Student();
-    Student(string department, string password, int id);
-    string Getdepartment() {return m_department; };
-    void Setdepartment(string department) { m_department = department; };
-    // Additional methods for student-specific functionality
-    void readTimetableFromFile(const string& filename);
-    void generatePersonalTimetable();
-    void resolveConflicts();
+    Student(); // Assume default constructor is defined elsewhere
+    ~Student(); // Assume destructor is defined elsewhere
+    Student(string department, string password, int id); // Assume this is defined elsewhere
+
+    string GetDepartment() { return m_department; }
+    void SetDepartment(string department) { m_department = department; }
+
+    void readTimetableFromFile(const string& department);
+    void generatePersonalTimetable(); // Assume this is defined elsewhere
+    void resolveConflicts(); // Assume this is defined elsewhere
+
+    // A method to output the timetable
+    friend ostream& operator<<(ostream& out, const Student& s);
+
+    // Additional methods can be added as necessary
 };
-ostream& operator<<(ostream& out, Student timetableS);
