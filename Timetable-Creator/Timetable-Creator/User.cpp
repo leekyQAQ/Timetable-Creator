@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
+
 using namespace std;
 User::User() {
 	m_password = "";
@@ -31,7 +33,7 @@ void User::login(fstream& file) {
 	}
 	// than check the password in the same file to see if the password is correct
 	if (!idFound) {
-		cout << "User ID not found. Please try again or sign up." << endl;
+		cout << "User ID not found. Please try again." << endl;
 		return;
 	}
 	string inputPassword;
@@ -48,33 +50,54 @@ void User::login(fstream& file) {
 }
 
 
+
 void User::signin(fstream& file) {
-	int inputId;
-	cout << "Enter your desired user ID: ";
-	cin >> inputId;
+    // Variables 
+    int inputId;
+    int storedId;
+    string storedPassword;
+    bool idExists = false;
 
-	// Check if the ID already exists in the file
-	int storedId;
-	string storedPassword;
-	bool idExists = false;
+    // User input
+    cout << "Enter your user ID: ";
+    cin >> inputId;
 
-	while (file >> storedId >> storedPassword) {
-		if (storedId == inputId) {
-			idExists = true;
-			break;
-		}
-	}
-	if (!idExists) {
-		cout << "User ID does not exists. Please choose a different ID." << endl;
-		return;
-	}
+    // Vectors to store user IDs and passwords
+    vector<int> ids;
+    vector<string> passwords;
 
-	// Ask the user to create a password
-	string newPassword;
-	cout << "Create a password: " ;
-	cin >> newPassword;
+    // Read the IDs and passwords from the file into the vectors and checks if the id is real
+    while (file >> storedId >> storedPassword) {
+        ids.push_back(storedId);  // Add the ID to the IDs vector
+        passwords.push_back(storedPassword);  // Add the password to the passwords vector
+        if (storedId == inputId) {
+            idExists = true;  
+        }
+    }
 
-	// Save the new user to the file
-	file << " " << newPassword << endl;
-	cout << "Sign-up successful! You can now log in." << endl;
+    file.clear();
+    file.seekg(0, ios::beg);
+    file.seekp(0, ios::beg);
+
+    // If the input ID does not exist in the file, print an error message and return
+    if (!idExists) {
+        cout << "User ID does not exist. Please choose a different ID." << endl;
+        return;
+    }
+
+    // Ask the user to create a new password
+    string newPassword;
+    cout << "Create a new password: ";
+    cin >> newPassword;
+
+    // Loop through the IDs vector
+    
+    for (int i = 0; i < ids.size(); i++) {
+        if (ids[i] == inputId) {
+            passwords[i] = newPassword;
+        }
+        file << ids[i] << " " << passwords[i] << endl;
+    }
+    
+    cout << "Password Set successfully. You can now log in." << endl;
 }
