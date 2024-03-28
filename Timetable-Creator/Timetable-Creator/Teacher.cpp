@@ -1,27 +1,23 @@
 #include "Teacher.h"
 Teacher::Teacher() {
-
+    m_department = " ";
 }
 Teacher::~Teacher() {
 
 }
-void Teacher::displayTimetable() {
-    // Assuming TimeTable has a method to load and return a formatted timetable
-    timeTable tt;
-    /*
-    tt.loadFromFile("timetable.txt");
-    std::cout << tt.formatForDisplay();
-    */
+Teacher::Teacher(string department, string password, int id) {
+    m_department = department;
 }
 
-void Teacher::modifyTimetable() {
-    // Modify the timetable
-    // You would need to define how a teacher modifies the timetable
-    // For example, you might read from "timetable.txt", make changes, and write back to it
+void Teacher::generatePersonalTimetable() {
+    
 }
-void Teacher::Sing_in() {
 
-}
-void Teacher::Log_in() {
 
+// Overloads the stream insertion operator to print the personal timetable
+ostream& operator<<(ostream& out, const Teacher& teacher) {
+    for (const auto& courseStr : teacher.m_personalTimetable) {
+        out << courseStr << endl;
+    }
+    return out;
 }

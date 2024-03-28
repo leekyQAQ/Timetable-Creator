@@ -7,6 +7,7 @@ protected:
 	vector<event> m_timeTable;
 public:
 	timeTable(vector<event >timetable);
+	
 	vector<event> getVector() { return m_timeTable; }
 	event getEvent(int code);
 	string getEventName(int code);
