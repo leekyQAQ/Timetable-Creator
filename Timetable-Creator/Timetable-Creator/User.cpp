@@ -101,3 +101,19 @@ void User::signin(fstream& file) {
     
     cout << "Password Set successfully. You can now log in." << endl;
 }
+
+bool User::checkID(string filename, int ID)
+{
+    int storedId;
+    string storedPassword;
+    bool idExists = false;
+    ifstream file(filename);
+    while (file >> storedId >> storedPassword) {
+        if (storedId == ID) {
+            idExists = true;
+            break;
+        }
+    }
+    file.close();
+    return idExists;
+}

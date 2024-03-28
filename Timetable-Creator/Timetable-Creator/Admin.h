@@ -9,7 +9,8 @@ public:
 	void addID();
 	void addCourses();
 	void addMeeting();
-	void saveInfo();
+	void deleteCourse();
+	void deleteID();
 
 
 };
