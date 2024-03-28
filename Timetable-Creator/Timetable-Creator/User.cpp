@@ -74,8 +74,10 @@ void User::signin(fstream& file) {
             idExists = true;  
         }
     }
+
     file.clear();
     file.seekg(0, ios::beg);
+    file.seekp(0, ios::beg);
 
     // If the input ID does not exist in the file, print an error message and return
     if (!idExists) {
