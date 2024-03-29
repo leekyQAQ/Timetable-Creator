@@ -140,8 +140,7 @@ void Admin::addMeeting()
 void Admin::deleteCourse()
 {
 	int faculty;
-	string filename, code;
-	vector <event> timetable;
+	string filename;
 
 	cout << "1. Faculty of Health Sciences." << endl;
 	cout << "2. Faculty of Science." << endl;
@@ -174,8 +173,40 @@ void Admin::deleteCourse()
 		break;
 
 	}
+	
+	int deleteCode;
+	cout << "Enter the course code that you want to delete: ";
+	cin >> deleteCode;
 
-	ifstream file_in(filename);
+	int code, day, participantNum, hold;
+	string name;
+	double startTime, endTime;
+	vector <int> participants;
+	vector <event> courseVec;
+
+	fstream file(filename);
+	while (!file.eof())
+	{
+		file >> code >> name >> startTime >> endTime >> day >> participantNum; 
+		for (int i = 0; i < participantNum; i++)
+		{
+			file >> hold;
+			participants.push_back(hold);
+		}
+
+		if (code != deleteCode)
+		{
+			event course(code, name, startTime, endTime, day, participants);
+			courseVec.push_back(course);
+		}
+	}
+
+	file.clear();
+	file.close();
+
+	timeTable updatedData(courseVec);
+	updatedData.saveToFile(file, filename); 
+	file.close();
 
 }
 

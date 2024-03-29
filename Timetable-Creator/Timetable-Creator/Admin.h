@@ -1,6 +1,7 @@
 #pragma once
 #include "User.h"
 #include "Event.h"
+#include "timeTable.h"
 class Admin : public User
 {
 public:
