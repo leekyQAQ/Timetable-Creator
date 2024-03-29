@@ -139,6 +139,43 @@ void Admin::addMeeting()
 
 void Admin::deleteCourse()
 {
+	int faculty;
+	string filename, code;
+	vector <event> timetable;
+
+	cout << "1. Faculty of Health Sciences." << endl;
+	cout << "2. Faculty of Science." << endl;
+	cout << "3. Faculty of Engineering." << endl;
+	cout << "4. Faculty of Humanities." << endl;
+	cout << "5. Faculty of Social Science." << endl;
+	cout << "6. Faculty of Business." << endl;
+	cout << "Enter the faculty (1 - 6): ";
+	cin >> faculty;
+
+	switch (faculty)
+	{
+	case 1:
+		filename = "healthSciences_eventList.txt";
+		break;
+	case 2:
+		filename = "science_eventList.txt";
+		break;
+	case 3:
+		filename = "engineering_eventList.txt";
+		break;
+	case 4:
+		filename = "humanities_eventList.txt";
+		break;
+	case 5:
+		filename = "socialScience_eventList.txt";
+		break;
+	case 6:
+		filename = "Business_eventList.txt";
+		break;
+
+	}
+
+	ifstream file_in(filename);
 
 }
 
