@@ -1,16 +1,19 @@
 #pragma once
 using namespace std;
+#include <iostream>
 #include <string>
+#include <fstream>
 class User
 {
 protected:
 	string m_password;
-	string m_department;
+	int m_id;
 public:
 	User();
-	User(string password, string department);
-	virtual void login() = 0;
-	virtual void signin() = 0;
-
+	User(string password, int id);
+	virtual void login(fstream &file);
+	virtual void signin(fstream &file);
+	bool checkID(string filename, int ID);
+	
 };
 
