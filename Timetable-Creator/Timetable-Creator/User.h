@@ -13,6 +13,7 @@ public:
 	User(string password, int id);
 	virtual void login(fstream &file);
 	virtual void signin(fstream &file);
+	bool checkID(string filename, int ID);
 	
 };
 

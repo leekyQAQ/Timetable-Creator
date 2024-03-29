@@ -47,6 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AdminID.txt" />
-    <Text Include="Event.txt" />
+    <Text Include="StudentID.txt" />
+    <Text Include="TeacherID.txt" />
+    <Text Include="engineering_eventList.txt" />
+    <Text Include="healthSciences_eventList.txt" />
+    <Text Include="science_eventList.txt" />
+    <Text Include="humanities_eventList.txt" />
+    <Text Include="socialScience_eventList.txt" />
+    <Text Include="Business_eventList.txt" />
   </ItemGroup>
 </Project>
