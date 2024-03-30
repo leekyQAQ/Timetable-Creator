@@ -144,7 +144,6 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AdminID.txt" />
     <Text Include="business_eventList.txt" />
     <Text Include="engineering_eventList.txt" />
     <Text Include="healthSciences_eventList.txt" />

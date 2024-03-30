@@ -4,7 +4,7 @@ void Admin::login()
 {
 	int id;
 	string pass;
-	bool check = true;
+	bool check = false;
 	//check the user ID
 	while (!check)
 	{
@@ -23,7 +23,9 @@ void Admin::login()
 		else
 			check = true;
 	}
+
 	//check the password
+	check = false;
 	while (!check)
 	{
 		cout << "Please enter the password (-1 to exit): ";
@@ -88,10 +90,10 @@ void Admin::addCourses()
 	cin >> name;
 	cout << "teacher ID list" << endl;
 	string IDhold,pass;
+
 	while (file>>IDhold>>pass)
-	{
 		cout << IDhold << endl;
-	}
+
 	cout << "Enter the Teacher ID: ";
 	cin >> teacherID;
 
@@ -102,6 +104,7 @@ void Admin::addCourses()
 	course.saveEventToFile(file_out);
 	file_out.close();
 }
+
 //THIS PART NEED REWRITE
 void Admin::addMeeting()
 {
@@ -121,7 +124,7 @@ void Admin::addMeeting()
 	cout << "Enter the day of meeting: ";
 	cin >> day;
 
-	cout << "Enter the participants IDs (-1 for the end): ";
+	cout << "Enter the participants IDs (enter -1 to end enering): ";
 	while (true)
 	{
 		cin >> holdParticipants;
@@ -135,6 +138,7 @@ void Admin::addMeeting()
 	}
 
 	cout << "Schedules for teachers are following:" << endl;
+	cout << "code  name  start  end  day  #_of_participants  participants " << endl;
 	teacherSchedule.outTimeTable();
 
 	do
@@ -217,7 +221,7 @@ void Admin::deleteID()
 		cout << "Enter the ID taht you want to delete: ";
 		cin >> ID;
 		check = checkID(filename, ID);
-		if (check = false)
+		if (check == false)
 			cout << "ID doesn't exist. please try again." << endl;
 	} while (!check);
 

@@ -131,19 +131,15 @@ int main() {
 
      if(choice==3)
      {
-        
+        cout << "choice 3";
         Admin user;
+        user.login(); //fixed the problem
+
         //user.deleteID();
         //user.deleteCourse();
         //user.addMeeting();
         //user.addCourses();
         //user.addID();
-        user.login();//can't login
-        cout << "choice 3";
-        
      }
-
-    
-    
 
 }
