@@ -15,7 +15,7 @@ User::User(string password, int id) {
 	m_id = id;
 }
 
-void User::login(fstream& file) {
+bool User::login(fstream& file) {
 	// ask the user for their id
 	int inputId;
 	cout << "Enter your user ID: ";
@@ -34,7 +34,7 @@ void User::login(fstream& file) {
 	// than check the password in the same file to see if the password is correct
 	if (!idFound) {
 		cout << "User ID not found. Please try again." << endl;
-		return;
+		return false;
 	}
 	string inputPassword;
 	cout << "Enter your password: "<< endl;
@@ -42,9 +42,11 @@ void User::login(fstream& file) {
 
 	if (inputPassword == storedPassword) {
 		cout << "Login successful! Welcome, User " << inputId << "." << endl;
+        return true;
 	}
 	else {
 		cout << "Incorrect password. Please try again."<< endl;
+        return false;
 	}
 
 }
