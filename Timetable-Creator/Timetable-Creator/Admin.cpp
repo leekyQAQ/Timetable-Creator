@@ -79,6 +79,7 @@ void Admin::addCourses()
 	string name;
 	vector <int> participants;
 	string filename = askFaculty();
+	
 
 	cout << "Enter the course code: ";
 	cin >> code;
@@ -97,15 +98,21 @@ void Admin::addCourses()
 
 void Admin::addMeeting()
 {
-	int code, holdParticipants;
+	int code, holdParticipants, day;
+	double startTime, endTime;
 	string name;
 	vector <int> participants;
 	string filename = askFaculty();
+	vector <event> schedule;
+	timeTable teacherSchedule;
+	bool timeConflict;
 
 	cout << "Enter the meeeting code: ";
 	cin >> code;
 	cout << "Enter the meeting name: ";
 	cin >> name;
+	cout << "Enter the day of meeting: ";
+	cin >> day;
 
 	cout << "Enter the participants IDs (-1 for the end): ";
 	while (true)
@@ -115,12 +122,29 @@ void Admin::addMeeting()
 			break;
 
 		vector <event> schedule = getTeacherSchedule(holdParticipants, filename);
-		timeTable teacherSchedule(schedule);
+		teacherSchedule = teacherSchedule + schedule;
 
-		participants.push_back(holdParticipants);
+		participants.push_back(holdParticipants); 
 	}
 
-	event meeting(code, name, participants);
+	cout << "Schedules for teachers are following:" << endl;
+	teacherSchedule.outTimeTable();
+
+	do
+	{
+		cout << "Enter the starting time: ";
+		cin >> startTime;
+		cout << "Enter the ending time: ";
+		cin >> endTime;
+
+		event meetingholder(code, name, startTime, endTime, day, participants);
+		timeConflict = teacherSchedule.timeCheck(meetingholder);
+
+		if (timeConflict)
+			cout << "Please enter the time again." << endl;
+	} while (timeConflict);
+	
+	event meeting(code, name, startTime, endTime, day, participants);
 	fstream file_out(filename, ios::app);
 	meeting.saveEventToFile(file_out);
 	file_out.close();
@@ -279,6 +303,4 @@ vector <event> Admin::getTeacherSchedule(int id, string filename)
 	}
 
 	return schedule;
-
-
 }

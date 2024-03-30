@@ -30,4 +30,7 @@ public:
 	void updateFrom(timeTable timetable);
 	
 	void outTimeTable();
+
+
+	timeTable operator+(timeTable);
 };
