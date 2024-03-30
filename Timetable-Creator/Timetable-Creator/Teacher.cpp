@@ -1,19 +1,26 @@
 #include "Teacher.h"
 #include <fstream>
-#include <sstream>
-#include <algorithm>
 #include <iostream>
 using namespace std;
 
 Teacher::~Teacher() {
 
 }
-Teacher::Teacher(string department, string password, int id, timeTable timmetable) {
+Teacher::Teacher(string department, string password, int id, timeTable memory) :User(password, id) {
     m_department = department;
-    m_timetable = timetable;
-}
 
-void Teacher::changetime(timeTable &memory) {
+    for (int i = 0; i < memory.getSize(); i++) {
+        event temp = memory.getEvent(i);
+        vector<int> ID = temp.getEventParticipants();
+        for (int j = 0; j < ID.size(); j++)
+        {
+            if (id == ID[j]) {
+                m_timetable.addEventToTimetable(temp);
+            }
+        }
+    }
+}
+void Teacher::changetime(timeTable memory) {
     string want;
     cout << "Do you want to change the time for the course? ( YES or NO)" << endl;
     cin >> want;

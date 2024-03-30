@@ -49,15 +49,26 @@ int main() {
     
     string filename;
     string department;
-    cout << "Which department: " << endl;
+    cout << "Which department: (Health Sciences / Science / Engineering / Humanities / Social Science / Business)" << endl;
     cin >> department;
     if (department == "Engineering") {
-        filename = "engineering_eventList.txt";
+        filename = "Engineering_eventList.txt";
     }
     else if (department == "Science") {
-        filename = "science_eventList.txt";
+        filename = "Science_eventList.txt";
     }
-    // Add other departments as needed
+    else if (department == "Health Sciences") {
+        filename = "Health_Sciences_eventList.txt";
+    }
+    else if (department == "Humanities") {
+        filename = "Humanities_eventList.txt";
+    }
+    else if (department == "Business") {
+        filename = "Business_eventList.txt";
+    }
+    else if (department == "Social Science") {
+        filename = "Social_Science_eventList.txt";
+    }
 
     ifstream file(filename);
     if (!file.is_open()) {

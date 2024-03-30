@@ -5,9 +5,9 @@ timeTable::timeTable(vector<event> timetable)
 {
 	m_timeTable = timetable;
 }
-timeTable::timeTable(event first)
+timeTable::timeTable()
 {
-	m_timeTable.push_back(first);
+
 }
 int timeTable::getSize()
 {
