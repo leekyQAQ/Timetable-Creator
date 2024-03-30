@@ -21,11 +21,9 @@ public:
     // Getters and Setters for department
     string GetDepartment() { return m_department; }
     void SetDepartment(string department) { m_department = department; }
+    timeTable gettimetable() { return m_timetable; }
+    void changetime(timeTable memory);
 
-    // Member functions for timetable management
-    void generatePersonalTimetable();
-
-    // Overloading the insertion (<<) operator to print the personal timetable
     friend ostream& operator<<(ostream& out, const Teacher& teacher);
 };
 

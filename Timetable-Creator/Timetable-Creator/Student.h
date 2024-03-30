@@ -20,7 +20,9 @@ public:
     // Getters and Setters for department
     string GetDepartment() { return m_department; }
     void SetDepartment(string department) { m_department = department; }
-
+    timeTable gettimetable() { return m_timetable; }
+    void selecttimetable(timeTable memory);
+    void deletevent(timeTable memory);
 
     // Overloading the insertion (<<) operator to print the personal timetable
     friend ostream& operator<<(ostream& out, const Student& student);

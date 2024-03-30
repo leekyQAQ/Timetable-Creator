@@ -6,8 +6,9 @@ class timeTable
 protected:
 	vector<event> m_timeTable;
 public:
+	timeTable();
 	timeTable(vector<event >timetable);
-	timeTable(event first);
+
 	vector<event> getVector() { return m_timeTable; }
 	event getEventByCode(int code);
 	event getEvent(int number);
