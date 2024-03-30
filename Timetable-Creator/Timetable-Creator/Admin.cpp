@@ -51,9 +51,9 @@ void Admin::addID()
 	cout << "Enter 1 for student ID and 2 for teacher ID: ";
 	cin >> hold;
 	if (hold == 1)
-		filename = "StudentID.txt";
+		filename = "Studentdata.txt";
 	else
-		filename = "TeacherID.txt";
+		filename = "Teacherdata.txt";
 
 	do
 	{
@@ -95,7 +95,7 @@ void Admin::addCourses()
 	course.saveEventToFile(file_out);
 	file_out.close();
 }
-
+//THIS PART NEED REWRITE
 void Admin::addMeeting()
 {
 	int code, holdParticipants, day;
@@ -200,10 +200,10 @@ void Admin::deleteID()
 	cout << "Enter 1 for Student ID and 2 for Teacher ID: ";
 	cin >> studentOrTeacher;
 	if (studentOrTeacher == 1)
-		filename = "Student.txt";
+		filename = "Studentdata.txt";
 
 	else
-		filename = "Teacher.txt";
+		filename = "Teacherdata.txt";
 
 	do
 	{
