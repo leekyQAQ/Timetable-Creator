@@ -3,11 +3,14 @@
 #include "User.h"
 #include <fstream>
 #include"timeTable.h"
+#include "Student.h"
+#include"Teacher.h"
 using namespace std;
 
 
 int main() {
 
+    /*
     // Open the file
     int choice;
     cout << "Welcome to the program" << endl;
@@ -61,8 +64,8 @@ int main() {
         cerr << "Could not open file for department: " << department << endl;
         return;
     }
-
-
+    */
+    fstream file("Business_eventList.txt");
     vector<event> temp;
     string tempstr;
     int count = 0;
@@ -91,6 +94,9 @@ int main() {
     }
     timeTable memory(temp);
     
-
+    memory.outTimeTable();
+    Teacher test("Business", "2345", 123, memory);
+    test.changetime(memory);
+    memory.outTimeTable();
 
 }
