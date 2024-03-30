@@ -24,19 +24,39 @@ bool User::login(fstream& file) {
 	int storedId;
 	string storedPassword;
 	bool idFound = false;
+   // vector<string> allStoredPassword;
+    //vector<int> allStoredID;
 	// if it's real then ask to user for password
 	while (file >> storedId >> storedPassword) {
+       // allStoredID.push_back(storedId);
+       // allStoredPassword.push_back(storedPassword);
 		if (storedId == inputId) {
 			idFound = true;
-			break;
-		}
+            string inputPassword;
+            do {
+                
+                cout << "Enter your password: " << endl;
+                cin >> inputPassword;
+
+                if (inputPassword == storedPassword) {
+                    cout << "Login successful! Welcome, User " << inputId << "." << endl;
+                    m_id = storedId;
+                    m_password = inputPassword;
+                }
+                else {
+                    cout << "Incorrect password. Please try again." << endl;
+                }
+            } while (inputPassword != storedPassword);
+
+            break;
+        }
 	}
 	// than check the password in the same file to see if the password is correct
 	if (!idFound) {
 		cout << "User ID not found. Please try again." << endl;
 		return false;
 	}
-	string inputPassword;
+	/*string inputPassword;
 	cout << "Enter your password: "<< endl;
 	cin >> inputPassword;
 
@@ -46,8 +66,7 @@ bool User::login(fstream& file) {
 	}
 	else {
 		cout << "Incorrect password. Please try again."<< endl;
-        return false;
-	}
+	}*/
 
 }
 
@@ -101,7 +120,7 @@ void User::signin(fstream& file) {
         file << ids[i] << " " << passwords[i] << endl;
     }
     
-    cout << "Password Set successfully. You can now log in." << endl;
+    cout << "Password Set successfully. Please open the program again to log in." << endl;
 }
 
 bool User::checkID(string filename, int ID)

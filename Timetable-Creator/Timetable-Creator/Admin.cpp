@@ -51,9 +51,9 @@ void Admin::addID()
 	cout << "Enter 1 for student ID and 2 for teacher ID: ";
 	cin >> hold;
 	if (hold == 1)
-		filename = "StudentID.txt";
+		filename = "Studentdata.txt";
 	else
-		filename = "TeacherID.txt";
+		filename = "Teacherdata.txt";
 
 	do
 	{
@@ -106,7 +106,7 @@ void Admin::addCourses()
 		filename = "socialScience_eventList.txt";
 		break;
 	case 6:
-		filename = "Business_eventList.txt";
+		filename = "business_eventList.txt";
 		break;
 
 	}
@@ -120,8 +120,8 @@ void Admin::addCourses()
 	course.saveEventToFile(file_out);
 	file_out.close();
 }
-
-void Admin::addMeeting()
+//THIS PART NEED REWRITE
+/*void Admin::addMeeting()
 {
 	int code;
 	string name;
@@ -135,7 +135,7 @@ void Admin::addMeeting()
 	fstream file_out("Event.txt", ios::app);
 	meeting.saveEventToFile(file_out);
 	file_out.close();
-}
+}*/
 
 void Admin::deleteCourse()
 {
@@ -169,7 +169,7 @@ void Admin::deleteCourse()
 		filename = "socialScience_eventList.txt";
 		break;
 	case 6:
-		filename = "Business_eventList.txt";
+		filename = "business_eventList.txt";
 		break;
 
 	}
@@ -220,10 +220,10 @@ void Admin::deleteID()
 	cout << "Enter 1 for Student ID and 2 for Teacher ID: ";
 	cin >> studentOrTeacher;
 	if (studentOrTeacher == 1)
-		filename = "Student.txt";
+		filename = "Studentdata.txt";
 
 	else
-		filename = "Teacher.txt";
+		filename = "Teacherdata.txt";
 
 	do
 	{
