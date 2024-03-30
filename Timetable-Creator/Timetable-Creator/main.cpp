@@ -2,6 +2,7 @@
 #include "event.h"
 #include "User.h"
 #include <fstream>
+#include"timeTable.h"
 using namespace std;
 
 

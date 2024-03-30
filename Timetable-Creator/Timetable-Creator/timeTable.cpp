@@ -5,7 +5,14 @@ timeTable::timeTable(vector<event> timetable)
 {
 	m_timeTable = timetable;
 }
-
+timeTable::timeTable(event first)
+{
+	m_timeTable.push_back(first);
+}
+int timeTable::getSize()
+{
+	return m_timeTable.size();
+}
 // Retrieve an event from the timetable based on event code
 event timeTable::getEvent(int code)
 {
