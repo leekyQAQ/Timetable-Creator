@@ -15,6 +15,8 @@ private:
     /*std::vector<string> m_personalTimetable; // Stores the student's personal timetable data*/
 
 public:
+    Teacher();
+
     Teacher(string department, string password, int id, timeTable timmetable); // Parameterized constructor
     ~Teacher();
 
@@ -22,8 +24,8 @@ public:
     string GetDepartment() { return m_department; }
     void SetDepartment(string department) { m_department = department; }
     timeTable gettimetable() { return m_timetable; }
-    void changetime(timeTable memory);
+    void changetime();
+    void setTimetable(timeTable memory);
 
-    friend ostream& operator<<(ostream& out, const Teacher& teacher);
 };
-
+ ostream& operator<<(ostream& out,  Teacher teacher);
