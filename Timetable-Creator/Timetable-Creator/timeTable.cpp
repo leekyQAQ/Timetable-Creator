@@ -14,7 +14,12 @@ int timeTable::getSize()
 	return m_timeTable.size();
 }
 // Retrieve an event from the timetable based on event code
-event timeTable::getEvent(int code)
+event timeTable::getEvent(int number)
+{
+	// Iterate through the timetable
+	return m_timeTable[number];
+}
+event timeTable::getEventByCode(int code)
 {
 	// Iterate through the timetable
 	for (event temp : m_timeTable)
