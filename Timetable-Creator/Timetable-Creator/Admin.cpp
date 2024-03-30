@@ -175,9 +175,8 @@ void Admin::deleteCourse()
 	vector <event> courseVec;
 
 	fstream file(filename);
-	while (!file.eof())
-	{
-		file >> code >> name >> startTime >> endTime >> day >> participantNum; 
+	while (file >> code >> name >> startTime >> endTime >> day >> participantNum)
+	{ 
 		for (int i = 0; i < participantNum; i++)
 		{
 			file >> hold;
@@ -197,6 +196,8 @@ void Admin::deleteCourse()
 	file.close();
 
 	timeTable updatedData(courseVec);
+	updatedData.outTimeTable();
+	cout << endl;
 	updatedData.saveToFile(file, filename); 
 	file.close();
 
