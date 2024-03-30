@@ -8,17 +8,17 @@ using namespace std;
 Student::~Student() {
 
 }
-Student::Student(string department, string password, int id, timeTable timetable) {
+Student::Student(string department, string password, int id, timeTable memory) {
     m_department = department;
-    m_timetable = timetable;
+    vector<int> ID;
+    for (int i = 0; i < memory.size;i++) {
+
+    }
+    memory.getEvent(ID);
+
 }
 
-void Student::generatePersonalTimetable() {
-    
-}
 
-
-// Overloads the stream insertion operator to print the personal timetable
 ostream& operator<<(ostream& out, const Student& student) {
     for (const auto& courseStr : student.m_personalTimetable) {
         out << courseStr << endl;

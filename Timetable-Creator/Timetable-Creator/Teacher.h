@@ -15,8 +15,7 @@ private:
     /*std::vector<string> m_personalTimetable; // Stores the student's personal timetable data*/
 
 public:
-    Teacher(); // Default constructor
-    Teacher(string department, string password, int id); // Parameterized constructor
+    Teacher(string department, string password, int id, timeTable timmetable); // Parameterized constructor
     ~Teacher();
 
     // Getters and Setters for department
