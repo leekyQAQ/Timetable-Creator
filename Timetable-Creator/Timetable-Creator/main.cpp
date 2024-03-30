@@ -2,10 +2,13 @@
 #include "event.h"
 #include "User.h"
 #include <fstream>
+#include"timeTable.h"
+#include "Student.h"
 using namespace std;
 
 
 int main() {
+
     // Open the file
     int choice;
     cout << "Welcome to the program" << endl;
@@ -40,6 +43,66 @@ int main() {
     else {
         cout << "placeholder" << endl;
     }
+
+    
+    string filename;
+    string department;
+    cout << "Which department: (Health Sciences / Science / Engineering / Humanities / Social Science / Business)" << endl;
+    cin >> department;
+    if (department == "Engineering") {
+        filename = "Engineering_eventList.txt";
+    }
+    else if (department == "Science") {
+        filename = "Science_eventList.txt";
+    }
+    else if (department == "Health Sciences") {
+        filename = "Health_Sciences_eventList.txt";
+    }
+    else if (department == "Humanities") {
+        filename = "Humanities_eventList.txt";
+    }
+    else if (department == "Business") {
+        filename = "Business_eventList.txt";
+    }
+    else if (department == "Social Science") {
+        filename = "Social_Science_eventList.txt";
+    }
+
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cerr << "Could not open file for department: " << department << endl;
+
+    }
+
+
+    vector<event> temp;
+    string tempstr;
+    int count = 0;
+    while (getline(file, tempstr))
+    {
+        count++;
+    }
+    file.clear();
+    file.seekg(0, ios::beg);
+    for (int i = 0; i < count; i++)
+    {
+        int code, size, day;
+        double start, end;
+        string name;
+        vector<int> ID;
+        file >> code >> name >> start >> end >> day >> size;
+        for (int j = 0; j < size; j++)
+        {
+            int id;
+            file >> id;
+            ID.push_back(id);
+        }
+         
+        temp.push_back(event(code, name, start, end, day, ID));
+
+    }
+    timeTable memory(temp);
+
 
 
 }

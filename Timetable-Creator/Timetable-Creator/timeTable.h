@@ -6,14 +6,18 @@ class timeTable
 protected:
 	vector<event> m_timeTable;
 public:
+	timeTable();
 	timeTable(vector<event >timetable);
+
 	vector<event> getVector() { return m_timeTable; }
-	event getEvent(int code);
+	event getEventByCode(int code);
+	event getEvent(int number);
 	string getEventName(int code);
 	double getEventStart(int code);
 	double getEventEnd(int code);
 	int getEventDay(int code);
 	vector<int> getEventParticipants(int code);
+	int getSize();
 	//with event
 	void addEventToTimetable(event add);
 	void deletEvent(int code);
