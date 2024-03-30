@@ -9,7 +9,8 @@ public:
 	timeTable(vector<event >timetable);
 	timeTable(event first);
 	vector<event> getVector() { return m_timeTable; }
-	event getEvent(int code);
+	event getEventByCode(int code);
+	event getEvent(int number);
 	string getEventName(int code);
 	double getEventStart(int code);
 	double getEventEnd(int code);
