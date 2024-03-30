@@ -75,6 +75,7 @@ void Admin::addID()
 
 void Admin::addCourses()
 {
+	fstream file("Teacherdata.txt");
 	int code, teacherID;
 	string name;
 	vector <int> participants;
@@ -85,6 +86,12 @@ void Admin::addCourses()
 	cin >> code;
 	cout << "Enter the course name: ";
 	cin >> name;
+	cout << "teacher ID list" << endl;
+	string IDhold,pass;
+	while (file>>IDhold>>pass)
+	{
+		cout << IDhold << endl;
+	}
 	cout << "Enter the Teacher ID: ";
 	cin >> teacherID;
 

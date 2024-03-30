@@ -1,29 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Admin.cpp" />
-    <ClCompile Include="event.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Student.cpp" />
-    <ClCompile Include="Teacher.cpp" />
-    <ClCompile Include="timeTable.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="Admin.cpp">
+      <Filter>class cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>class cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>class cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>class cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="timeTable.cpp">
+      <Filter>class cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>class cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Admin.h" />
-    <ClInclude Include="event.h" />
-    <ClInclude Include="Student.h" />
-    <ClInclude Include="Teacher.h" />
-    <ClInclude Include="timeTable.h" />
-    <ClInclude Include="User.h" />
+    <ClInclude Include="Admin.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="timeTable.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>head</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="AdminID.txt" />
-    <Text Include="Business_eventList.txt" />
-    <Text Include="engineering_eventList.txt" />
-    <Text Include="healthSciences_eventList.txt" />
-    <Text Include="humanities_eventList.txt" />
-    <Text Include="science_eventList.txt" />
-    <Text Include="socialScience_eventList.txt" />
+    <Text Include="business_eventList.txt">
+      <Filter>eventlist</Filter>
+    </Text>
+    <Text Include="engineering_eventList.txt">
+      <Filter>eventlist</Filter>
+    </Text>
+    <Text Include="healthSciences_eventList.txt">
+      <Filter>eventlist</Filter>
+    </Text>
+    <Text Include="humanities_eventList.txt">
+      <Filter>eventlist</Filter>
+    </Text>
+    <Text Include="science_eventList.txt">
+      <Filter>eventlist</Filter>
+    </Text>
+    <Text Include="socialScience_eventList.txt">
+      <Filter>eventlist</Filter>
+    </Text>
+    <Text Include="Teacherdata.txt" />
+    <Text Include="Studentdata.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="head">
+      <UniqueIdentifier>{b4d6a00b-8667-4609-9afc-6a88f00e2077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="class cpp">
+      <UniqueIdentifier>{e9ba4d46-21f4-4eb9-9a60-bc5226018323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eventlist">
+      <UniqueIdentifier>{8c889574-b89e-4c22-92d9-dbb66efde196}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
