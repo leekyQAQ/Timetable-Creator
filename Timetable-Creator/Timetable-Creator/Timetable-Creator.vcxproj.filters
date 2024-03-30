@@ -27,6 +27,8 @@
     <ClCompile Include="User.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Student.cpp">
+    <ClCompile Include="Teacher.cpp">
     <ClCompile Include="Admin.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -39,6 +41,10 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+    <ClInclude Include="Teacher.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Admin.h">
