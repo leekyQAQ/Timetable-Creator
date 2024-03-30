@@ -9,7 +9,9 @@ using namespace std;
 
 int main() {
 
-    // Open the file
+
+
+   /* // Open the file
     int choice;
     cout << "Welcome to the program" << endl;
     cout << "Are you 1)Student, 2)Teacher, 3)Admin" << endl;
@@ -43,7 +45,7 @@ int main() {
     else {
         cout << "placeholder" << endl;
     }
-
+   */
     
     string filename;
     string department;
@@ -101,8 +103,10 @@ int main() {
         temp.push_back(event(code, name, start, end, day, ID));
 
     }
+    
     timeTable memory(temp);
-
-
-
+    memory.outTimeTable();
+    vector<int> id = { 1,1,1 };
+    cout<<memory.timeCheck(event(10, "test", 8.0, 11.0, 1, id) );
+    
 }

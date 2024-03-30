@@ -24,6 +24,7 @@ public:
     void updateFrom(event update);
 	//with self
 	bool timeConfilctCheck();
+	bool timeCheck(event parameter);
 	//with memory
 	void saveToFile(fstream& file, string fileName);
 	void updateFrom(timeTable timetable);
