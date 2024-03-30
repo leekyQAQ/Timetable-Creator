@@ -136,7 +136,7 @@ int main() {
         user.login(); //fixed the problem
 
         //user.deleteID();
-        //user.deleteCourse();
+        user.deleteCourse();
         //user.addMeeting();
         //user.addCourses();
         //user.addID();

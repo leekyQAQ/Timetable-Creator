@@ -189,6 +189,8 @@ void Admin::deleteCourse()
 			event course(code, name, startTime, endTime, day, participants);
 			courseVec.push_back(course);
 		}
+
+		participants.clear();
 	}
 
 	file.clear();
