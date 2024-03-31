@@ -131,7 +131,7 @@ int main() {
             
             //loop
             while (choice == 1) {
-                cout << "Displaytime table (1)/ Change timetable(2) / Exit(3)" << endl;
+                cout << "Displaytime table (1)/ Change course time(2) / Exit(3)" << endl;
                 int newchoice;
                 cin >> newchoice;
                 if (newchoice == 1) {
@@ -139,6 +139,7 @@ int main() {
                     cout << user;
                 }
                 else if (newchoice == 2) {
+                    
                     user.changetime();
                     memory.updateFrom(user.gettimetable());
                     //memory.outTimeTable();
@@ -157,8 +158,8 @@ int main() {
     else {
         cout << "placeholder" << endl;
     }
-
-    
+    memory.saveToFile(file, filename);
+    cout << "end";
     
 
 }

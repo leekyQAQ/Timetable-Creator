@@ -50,7 +50,8 @@ void Teacher::changetime() {
             
             event temp2 = m_timetable.getEvent(j);
             if (temp2.getEventCode() == code) {
-                int start, end,day;
+                double start, end;
+                    int day;
                 
                 do {
                     cout << "Change the star time now" << endl;
@@ -63,11 +64,12 @@ void Teacher::changetime() {
                     temp2.setEventEnd(end);
                     temp2.setEventDay(day);
                     m_timetable.updateFrom(temp2);
-                    if(m_timetable.timeConfilctCheck() == true)
+                    
+                    if(m_timetable.timeConfilctCheck())
                     {
                         cout << "There is a time conflict" << endl;
                     }
-                } while (m_timetable.timeConfilctCheck() == true);
+                } while (m_timetable.timeConfilctCheck());
                 chaged = true;
             }
            
