@@ -5,6 +5,7 @@
 #include"timeTable.h"
 #include "Student.h"
 #include"Teacher.h"
+#include"Admin.h"
 using namespace std;
 
 
@@ -80,11 +81,11 @@ int main() {
 
     if (choice == 1) {
         fstream IDfile("Studentdata.txt");
-        
+        int choice2;
         cout << "Login(1)/ Signup(2)" << endl;
         Student user;
-        cin >> choice;
-        if (choice == 1){
+        cin >> choice2;
+        if (choice2 == 1){
             user.login(IDfile);
             user.SetDepartment(department);
             
@@ -103,12 +104,13 @@ int main() {
        memory.updateFrom(user.gettimetable());
 
     }
-    else if (choice == 2) {
+     if (choice == 2) {
         fstream IDfile("Teacherdata.txt");
+        int choice2;
         cout << "Login(1)/ Signup(2)" << endl;
         Teacher user;
-        cin >> choice;
-        if (choice == 1) {
+        cin >> choice2;
+        if (choice2 == 1) {
             user.login(IDfile);
             user.SetDepartment(department);
             user.setTimetable(memory);
@@ -125,12 +127,19 @@ int main() {
         user.changetime();
         memory.updateFrom(user.gettimetable());
         //memory.outTimeTable();
-    }
-    else {
-        cout << "placeholder" << endl;
-    }
+     }
 
-    
-    
+     if(choice==3)
+     {
+        cout << "choice 3";
+        Admin user;
+        user.login(); //fixed the problem
+
+        //user.deleteID();
+        user.deleteCourse();
+        //user.addMeeting();
+        //user.addCourses();
+        //user.addID();
+     }
 
 }

@@ -134,11 +134,11 @@ bool timeTable::timeConfilctCheck()
 					// Check for conflicts between events
 					if (eventInDay[i].getEventCode() != eventInDay[j].getEventCode())
 					{
-						if (eventInDay[j].getEventEnd() <= eventInDay[i].getEventEnd() && eventInDay[j].getEventEnd() >= eventInDay[i].getEventStart()) { conflict = true; }
+						if (eventInDay[j].getEventEnd() <= eventInDay[i].getEventEnd() && eventInDay[j].getEventEnd() >= eventInDay[i].getEventStart()) { conflictInLoop = true; }
 
-						if (eventInDay[j].getEventStart() <= eventInDay[i].getEventEnd() && eventInDay[j].getEventStart() >= eventInDay[i].getEventStart()) { conflict = true; }
+						if (eventInDay[j].getEventStart() <= eventInDay[i].getEventEnd() && eventInDay[j].getEventStart() >= eventInDay[i].getEventStart()) { conflictInLoop = true; }
 
-						if (conflict == true)
+						if (conflictInLoop == true)
 						{
 
 							cout << "Conflict between " << eventInDay[i].getEventName() << " and " << eventInDay[j].getEventName() << endl;
@@ -147,6 +147,49 @@ bool timeTable::timeConfilctCheck()
 					}
 				}
 
+			}
+		}
+	}
+	return conflict;
+}
+bool timeTable::timeCheck(event parameter)
+{
+	bool conflict = false;
+
+	// Iterate through each day of the week
+	for (int day = 1; day <= 7; day++)
+	{
+		vector<event> eventInDay;
+		int numberOfEventInDay = 0;
+		// Iterate through the timetable to find events on the current day
+		for (event num : m_timeTable)
+		{
+			if (num.getEventDay() == day)
+			{
+				numberOfEventInDay++;
+
+				eventInDay.push_back(num);
+			}
+		}
+		// If there are more than one event on the same day, check for conflicts
+		if (numberOfEventInDay > 1)
+		{
+			for (int i = 0; i < numberOfEventInDay; i++)
+			{
+					bool conflictInLoop = false;
+					// Check for conflicts between events
+					if (eventInDay[i].getEventCode() != parameter.getEventCode())
+					{
+						if (parameter.getEventEnd() <= eventInDay[i].getEventEnd() && parameter.getEventEnd() >= eventInDay[i].getEventStart()) { conflictInLoop = true; }
+
+						if (parameter.getEventStart() <= eventInDay[i].getEventEnd() && parameter.getEventStart() >= eventInDay[i].getEventStart()) { conflictInLoop = true; }
+
+						if (conflictInLoop == true)
+						{
+							cout << "Conflict between " << eventInDay[i].getEventName() << " and " << parameter.getEventName() << endl;
+							conflict = conflictInLoop;
+						}
+					}
 			}
 		}
 	}
@@ -224,4 +267,14 @@ void timeTable::outTimeTable()
 	{
 		m_timeTable[i].out();
 	}
+
+}
+
+timeTable timeTable::operator+(timeTable t1)
+{
+	for (int i = 0; i < t1.getSize(); i++)
+	{
+		m_timeTable.push_back(t1.getEvent(i));
+	}
+	return m_timeTable;
 }

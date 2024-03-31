@@ -144,13 +144,14 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AdminID.txt" />
-    <Text Include="Business_eventList.txt" />
+    <Text Include="business_eventList.txt" />
     <Text Include="engineering_eventList.txt" />
     <Text Include="healthSciences_eventList.txt" />
     <Text Include="humanities_eventList.txt" />
     <Text Include="science_eventList.txt" />
     <Text Include="socialScience_eventList.txt" />
+    <Text Include="Studentdata.txt" />
+    <Text Include="Teacherdata.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

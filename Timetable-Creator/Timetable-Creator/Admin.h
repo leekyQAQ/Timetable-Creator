@@ -12,6 +12,7 @@ public:
 	void addMeeting();
 	void deleteCourse();
 	void deleteID();
-
+	string askFaculty();
+	vector <event> getTeacherSchedule(int id, string filename);
 
 };
