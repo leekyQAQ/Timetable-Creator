@@ -42,6 +42,7 @@ void Student::setTimetable(timeTable memory)
         }
     }
 }
+
 void Student::selecttimetable(timeTable memory) {
     cout << "avaliable course:" << endl;
     cout << "code" << "\t" << "course name" << "\t" << "start and end time of the course" << "\t" << "day" << "\t" << endl;
@@ -83,8 +84,11 @@ void Student::selecttimetable(timeTable memory) {
 
 
 }
+
+
+
 void Student::deletevent(timeTable memory) {
-    cout << "Do you want to delet any course" << endl;
+    cout << "Course code:" << endl;
     int code;
     cin >> code;
     for (int i = 0; i < m_timetable.getSize(); i++) {
