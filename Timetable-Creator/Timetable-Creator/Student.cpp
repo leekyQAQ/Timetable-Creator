@@ -25,14 +25,16 @@ Student::Student(string department, string password, int id, timeTable memory):U
 }
 void Student::setTimetable(timeTable memory)
 {
-    for (int i = 0; i < memory.getSize(); i++) {
+    for (int i = 0; i < memory.getSize(); i++) 
+    {
       //  cout << endl;
         event temp = memory.getEvent(i);
         vector<int> ID = temp.getEventParticipants();
         for (int j = 0; j < ID.size(); j++)
         {
           //  cout << ID[j]<<" ";
-            if (m_id == ID[j]) {
+            if (m_id == ID[j]) 
+            {
                // cout << "my id" << m_id;
                 //temp.out();
                 m_timetable.addEventToTimetable(temp);
@@ -48,7 +50,9 @@ void Student::selecttimetable(timeTable memory) {
     cout << "code" << "\t" << "course name" << "\t" << "start and end time of the course" << "\t" << "day" << "\t" << endl;
     for (int i = 0; i < memory.getSize(); i++) {
         event temp = memory.getEvent(i);
-        cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+        if (temp.getEventDay() != -1) {
+            cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+        }
     }
 
         cout << "Please choose the course you want to have in this semester" << endl;

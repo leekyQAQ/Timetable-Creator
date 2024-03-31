@@ -37,11 +37,7 @@ Teacher::Teacher(string department, string password, int id, timeTable memory) :
     }
 }
 void Teacher::changetime() {
- 
-    /*string want;
-    cout << "Do you want to change the time for the course? ( YES or NO)" << endl;
-    cin >> want;
-    if (want == "YES") {*/
+   
         int code;
         cout << "Enter course code:" << endl;
         cin >> code;
@@ -49,10 +45,10 @@ void Teacher::changetime() {
         for (int j = 0; j < m_timetable.getSize(); j++) {
             
             event temp2 = m_timetable.getEvent(j);
-            if (temp2.getEventCode() == code) {
+            if (temp2.getEventCode() == code&& temp2.getEventDay()==-1) {
                 double start, end;
                     int day;
-                
+                    bool loop = false;
                 do {
                     cout << "Change the star time now" << endl;
                     cin >> start;
@@ -64,18 +60,20 @@ void Teacher::changetime() {
                     temp2.setEventEnd(end);
                     temp2.setEventDay(day);
                     m_timetable.updateFrom(temp2);
-                    
-                    if(m_timetable.timeConfilctCheck())
+                    loop = m_timetable.timeConfilctCheck();
+                    if(loop)
                     {
+                       
                         cout << "There is a time conflict" << endl;
                     }
-                } while (m_timetable.timeConfilctCheck());
+                    
+                } while (loop);
                 chaged = true;
             }
            
         }
         if (chaged==false) {
-            cout << "You don't have any event with same code" << endl;
+            cout << "You don't have any event with the same code that requires a time assignment." << endl;
         }
 
    /* }

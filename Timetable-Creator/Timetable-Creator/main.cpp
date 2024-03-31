@@ -88,6 +88,7 @@ int main() {
         if (choice2 == 1){
             user.login(IDfile);
             user.SetDepartment(department);
+            user.setTimetable(memory);
             //loop
             while (choice == 1){
                 cout << "Displaytime table (1)/ Edit/Create timetable(2) / Exit(3)"<<endl;
@@ -102,13 +103,17 @@ int main() {
                     cin >> newchoice;
                     if (newchoice == 1) {
                         user.selecttimetable(memory);
-                        //memory.updateFrom(user.gettimetable());
+                        cout << user;
+                        memory.updateFrom(user.gettimetable());
+                        memory.outTimeTable();
                     }
                     else {
                         user.deletevent(memory);
+                        memory.updateFrom(user.gettimetable());
                     }
                 }
                 else {
+                    
                     break;
                 }
             }
@@ -132,8 +137,8 @@ int main() {
             //memory.updateFrom(user.gettimetable());
             
             //loop
-            while (choice == 1) {
-                cout << "Displaytime table (1)/ Change course time(2) / Exit(3)" << endl;
+            while (choice == 2) {
+                cout << "Displaytime table (1)/ add course time(2) / Exit(3)" << endl;
                 int newchoice;
                 cin >> newchoice;
                 if (newchoice == 1) {
@@ -157,11 +162,13 @@ int main() {
         }
         IDfile.close();
     }
-    else {
-        cout << "placeholder" << endl;
+    if(choice==3) {
+        cout << "placeholder for admin interface" << endl;
     }
+
     memory.saveToFile(file, filename);
-    cout << "end";
+    file.close();
+    cout << "Program closed. Have a good day.";
     
 
 }
