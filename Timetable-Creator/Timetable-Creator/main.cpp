@@ -88,20 +88,40 @@ int main() {
         if (choice2 == 1){
             user.login(IDfile);
             user.SetDepartment(department);
-            
             user.setTimetable(memory);
+            //loop
+            while (choice == 1){
+                cout << "Displaytime table (1)/ Edit/Create timetable(2) / Exit(3)"<<endl;
+                int newchoice;
+                cin >> newchoice;
+                if (newchoice == 1) {
+                    cout << "Your timetable:" << endl;
+                    cout << user;
+                }
+                else if (newchoice == 2) {
+                    cout << "Add (1)/ Delete(2) courses" << endl;
+                    cin >> newchoice;
+                    if (newchoice == 1) {
+                        user.selecttimetable(memory);
+                        cout << user;
+                        memory.updateFrom(user.gettimetable());
+                        memory.outTimeTable();
+                    }
+                    else {
+                        user.deletevent(memory);
+                        memory.updateFrom(user.gettimetable());
+                    }
+                }
+                else {
+                    
+                    break;
+                }
+            }
         }
         else {
             user.signin(IDfile);
         }
         IDfile.close();
-        cout << "placeholder for student interface"<<endl;
-
-        //selec course
-        cout << "your timetable:" << endl;
-        cout << user;
-        user.selecttimetable(memory);
-       memory.updateFrom(user.gettimetable());
 
     }
      if (choice == 2) {
@@ -114,32 +134,41 @@ int main() {
             user.login(IDfile);
             user.SetDepartment(department);
             user.setTimetable(memory);
+            //memory.updateFrom(user.gettimetable());
+            
+            //loop
+            while (choice == 2) {
+                cout << "Displaytime table (1)/ add course time(2) / Exit(3)" << endl;
+                int newchoice;
+                cin >> newchoice;
+                if (newchoice == 1) {
+                    cout << "Your timetable:" << endl;
+                    cout << user;
+                }
+                else if (newchoice == 2) {
+                    
+                    user.changetime();
+                    memory.updateFrom(user.gettimetable());
+                    //memory.outTimeTable();
+                }
+                else {
+                    break;
+                }
+            }
+            
         }
         else {
             user.signin(IDfile);
         }
         IDfile.close();
-        cout << "placeholder for teacher interface";
+    }
+    if(choice==3) {
+        cout << "placeholder for admin interface" << endl;
+    }
 
-        //add course time
-        cout << "your timetable:" << endl;
-        cout << user;
-        user.changetime();
-        memory.updateFrom(user.gettimetable());
-        //memory.outTimeTable();
-     }
-
-     if(choice==3)
-     {
-        cout << "choice 3";
-        Admin user;
-        user.login(); //fixed the problem
-
-        //user.deleteID();
-        user.deleteCourse();
-        //user.addMeeting();
-        //user.addCourses();
-        //user.addID();
-     }
+    memory.saveToFile(file, filename);
+    file.close();
+    cout << "Program closed. Have a good day.";
+    
 
 }
