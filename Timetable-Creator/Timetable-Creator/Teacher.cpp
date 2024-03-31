@@ -43,7 +43,7 @@ void Teacher::changetime() {
     cin >> want;
     if (want == "YES") {*/
         int code;
-        cout << "Which course you want to change time" << endl;
+        cout << "Enter course code:" << endl;
         cin >> code;
         bool chaged = false;
         for (int j = 0; j < m_timetable.getSize(); j++) {

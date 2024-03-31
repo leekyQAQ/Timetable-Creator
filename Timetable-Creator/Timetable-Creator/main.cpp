@@ -126,9 +126,12 @@ int main() {
         if (choice == 1) {
             user.login(IDfile);
             user.SetDepartment(department);
+            user.setTimetable(memory);
+            //memory.updateFrom(user.gettimetable());
+            
             //loop
             while (choice == 1) {
-                cout << "Displaytime table (1)/ Add/Change timetable(2) / Exit(3)" << endl;
+                cout << "Displaytime table (1)/ Change timetable(2) / Exit(3)" << endl;
                 int newchoice;
                 cin >> newchoice;
                 if (newchoice == 1) {
@@ -136,17 +139,9 @@ int main() {
                     cout << user;
                 }
                 else if (newchoice == 2) {
-                    cout << "Add (1)/ Change(2) timetable" << endl;
-                    cin >> newchoice;
-                    if (newchoice == 1) {
-                        user.setTimetable(memory);
-                        //memory.updateFrom(user.gettimetable());
-                    }
-                    else {
-                        user.changetime();
-                        memory.updateFrom(user.gettimetable());
-                        //memory.outTimeTable();
-                    }
+                    user.changetime();
+                    memory.updateFrom(user.gettimetable());
+                    //memory.outTimeTable();
                 }
                 else {
                     break;
