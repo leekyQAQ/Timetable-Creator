@@ -14,6 +14,10 @@ int timeTable::getSize()
 	return m_timeTable.size();
 }
 // Retrieve an event from the timetable based on event code
+int timeTable::getEventCode(int number)
+{
+	return m_timeTable[number].getEventCode();
+}
 event timeTable::getEvent(int number)
 {
 	// Iterate through the timetable
@@ -33,73 +37,32 @@ event timeTable::getEventByCode(int code)
 }
 
 // Retrieve the name of an event from the timetable based on event code
-string timeTable::getEventName(int code)
+string timeTable::getEventName(int number)
 {
-	// Iterate through the timetable
-	for (event temp : m_timeTable)
-	{
-		// If event code matches, return the event name
-		if (temp.getEventCode() == code)
-		{
-			return temp.getEventName();
-		}
-	}
+	return m_timeTable[number].getEventName();
 }
 
 // Retrieve the start time of an event from the timetable based on event code
-double timeTable::getEventStart(int code)
+double timeTable::getEventStart(int number)
 {
-	// Iterate through the timetable
-	for (event temp : m_timeTable)
-	{
-		// If event code matches, return the event start time
-		if (temp.getEventCode() == code)
-		{
-			return temp.getEventStart();
-		}
-	}
+	return m_timeTable[number].getEventStart();
 }
 
 // Retrieve the end time of an event from the timetable based on event code
-double timeTable::getEventEnd(int code)
+double timeTable::getEventEnd(int number)
 {
-	// Iterate through the timetable
-	for (event temp : m_timeTable)
-	{
-		// If event code matches, return the event end time
-		if (temp.getEventCode() == code)
-		{
-			return temp.getEventEnd();
-		}
-	}
+	return m_timeTable[number].getEventEnd();
 }
-
 // Retrieve the day of an event from the timetable based on event code
-int timeTable::getEventDay(int code)
+int timeTable::getEventDay(int number)
 {
-	// Iterate through the timetable
-	for (event temp : m_timeTable)
-	{
-		// If event code matches, return the event day
-		if (temp.getEventCode() == code)
-		{
-			return temp.getEventDay();
-		}
-	}
+	return m_timeTable[number].getEventDay();
 }
 
 // Retrieve the participants of an event from the timetable based on event code
-vector<int> timeTable::getEventParticipants(int code)
+vector<int> timeTable::getEventParticipants(int number)
 {
-	// Iterate through the timetable
-	for (event temp : m_timeTable)
-	{
-		// If event code matches, return the event participants
-		if (temp.getEventCode() == code)
-		{
-			return temp.getEventParticipants();
-		}
-	}
+	return m_timeTable[number].getEventParticipants();
 }
 
 // Check for conflicts in the timetable
@@ -157,7 +120,7 @@ bool timeTable::timeCheck(event parameter)
 	bool conflict = false;
 
 	// Iterate through each day of the week
-	for (int day = 1; day <= 7; day++)
+	/*for (int day = 1; day <= 7; day++)
 	{
 		vector<event> eventInDay;
 		int numberOfEventInDay = 0;
@@ -173,26 +136,26 @@ bool timeTable::timeCheck(event parameter)
 		}
 		// If there are more than one event on the same day, check for conflicts
 		if (numberOfEventInDay > 1)
-		{
-			for (int i = 0; i < numberOfEventInDay; i++)
+		{*/
+			for (int i = 0; i < m_timeTable.size(); i++)
 			{
 					bool conflictInLoop = false;
 					// Check for conflicts between events
-					if (eventInDay[i].getEventCode() != parameter.getEventCode())
+					if (m_timeTable[i].getEventCode() != parameter.getEventCode())
 					{
-						if (parameter.getEventEnd() <= eventInDay[i].getEventEnd() && parameter.getEventEnd() >= eventInDay[i].getEventStart()) { conflictInLoop = true; }
+						if (parameter.getEventEnd() <= m_timeTable[i].getEventEnd() && parameter.getEventEnd() >= m_timeTable[i].getEventStart()) { conflictInLoop = true; }
 
-						if (parameter.getEventStart() <= eventInDay[i].getEventEnd() && parameter.getEventStart() >= eventInDay[i].getEventStart()) { conflictInLoop = true; }
+						if (parameter.getEventStart() <= m_timeTable[i].getEventEnd() && parameter.getEventStart() >= m_timeTable[i].getEventStart()) { conflictInLoop = true; }
 
 						if (conflictInLoop == true)
 						{
-							cout << "Conflict between " << eventInDay[i].getEventName() << " and " << parameter.getEventName() << endl;
+							cout << "Conflict between " << m_timeTable[i].getEventName() << " and " << parameter.getEventName() << endl;
 							conflict = conflictInLoop;
 						}
 					}
 			}
-		}
-	}
+		//}
+	//}
 	return conflict;
 }
 

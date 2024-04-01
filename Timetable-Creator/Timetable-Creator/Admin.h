@@ -5,14 +5,14 @@
 class Admin : public User
 {
 public:
-	Admin() : User("12345", 400541114) {}
+	Admin() : User("12345", 123) {}
 	void login();
 	void addID();
 	void addCourses();
-	void addMeeting();
+	void addMeeting(timeTable &memory);
 	void deleteCourse();
 	void deleteID();
 	string askFaculty();
-	vector <event> getTeacherSchedule(int id, string filename);
+	vector <event> getTeacherSchedule(int id, int selectday, string filename);
 
 };

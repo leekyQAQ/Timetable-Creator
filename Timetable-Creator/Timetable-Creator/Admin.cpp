@@ -106,66 +106,104 @@ void Admin::addCourses()
 }
 
 //THIS PART NEED REWRITE
-void Admin::addMeeting()
+void Admin::addMeeting(timeTable &memory)
 {
 	int code, holdParticipants, day;
 	double startTime, endTime;
 	string name;
 	vector <int> participants;
-	string filename = askFaculty();
-	vector <event> schedule;
 	timeTable teacherSchedule;
+	
+
 	bool timeConflict;
 
-	cout << "Enter the meeeting code: ";
-	cin >> code;
 	cout << "Enter the meeting name: ";
 	cin >> name;
 	cout << "Enter the day of meeting: ";
 	cin >> day;
 
-	cout << "Enter the participants IDs (enter -1 to end enering): ";
 	while (true)
 	{
+		cout << "Enter the participants IDs (enter -1 to end enering): ";
 		cin >> holdParticipants;
-		if (holdParticipants == -1)
-			break;
+			if (holdParticipants == -1){break;}
 
-		vector <event> schedule = getTeacherSchedule(holdParticipants, filename);
-		teacherSchedule = teacherSchedule + schedule;
 
-		participants.push_back(holdParticipants); 
+		for (int i = 0; i < memory.getSize(); i++)
+		{
+			//  cout << endl;
+			
+			vector<int> ID = memory.getEventParticipants(i);
+			for (int j = 0; j < ID.size(); j++)
+			{
+				//  cout << ID[j]<<" ";
+				if (holdParticipants == ID[j]&&day==memory.getEventDay(i))
+				{
+					// cout << "my id" << m_id;
+					 //temp.out();
+					teacherSchedule.addEventToTimetable(memory.getEvent(i));
+					ID.clear();
+					
+					break;
+				}
+				
+			}
+		}
+	participants.push_back(holdParticipants);
+		
 	}
 
 	cout << "Schedules for teachers are following:" << endl;
-	cout << "code  name  start  end  day  #_of_participants  participants " << endl;
-	teacherSchedule.outTimeTable();
-
+	cout << "code  name  start-end  day   " << endl;
+	for (int i = 0; i < teacherSchedule.getSize(); i++)
+	{
+		event temp = teacherSchedule.getEvent(i);
+		cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+	}
+	//checkCode
+	bool codeCheck = false;
+	do {
+		codeCheck = false;
+		cout << "Enter the meeeting code(should be negative): ";
+		cin >> code;
+		for (int i = 0; i < memory.getSize(); i++)
+		{
+			if (memory.getEventCode(i) == code)
+			{
+				cout << "the code is occupied" << endl;
+				codeCheck = true;
+			}
+		}
+	} while (codeCheck);
+	//cheech time
 	do
 	{
 		cout << "Enter the starting time: ";
 		cin >> startTime;
 		cout << "Enter the ending time: ";
 		cin >> endTime;
-
+		 
 		event meetingholder(code, name, startTime, endTime, day, participants);
 		timeConflict = teacherSchedule.timeCheck(meetingholder);
-
+		
 		if (timeConflict)
 			cout << "Please enter the time again." << endl;
 	} while (timeConflict);
 	
 	event meeting(code, name, startTime, endTime, day, participants);
-	fstream file_out(filename, ios::app);
-	meeting.saveEventToFile(file_out);
-	file_out.close();
+	meeting.out();
+	memory.addEventToTimetable(meeting);
+	//fstream file_out(filename, ios::app);
+
+	//meeting.saveEventToFile(file_out);
+	//file_out.close();
 }
 
 void Admin::deleteCourse()
 {
 	int deleteCode;
 	string filename = askFaculty();
-	cout << "Enter the course code that you want to delete: ";
+	cout << "Enter the event code that you want to delete: ";
 	cin >> deleteCode;
 
 	int code, day, participantNum, hold;
@@ -287,7 +325,7 @@ string Admin::askFaculty()
 }
 
 
-vector <event> Admin::getTeacherSchedule(int id, string filename)
+vector <event> Admin::getTeacherSchedule(int id, int selectday,string filename)
 {
 	vector <event>schedule; 
 	int code, day,numParticipants, holdParticipant;
@@ -305,7 +343,7 @@ vector <event> Admin::getTeacherSchedule(int id, string filename)
 		{
 			file >> holdParticipant;
 			participants.push_back(holdParticipant);
-			if (holdParticipant == id)
+			if (holdParticipant == id&&day==selectday)
 				mach = true;
 		}
 

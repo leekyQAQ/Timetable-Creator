@@ -11,12 +11,14 @@ public:
 
 	vector<event> getVector() { return m_timeTable; }
 	event getEventByCode(int code);
+	
 	event getEvent(int number);
-	string getEventName(int code);
-	double getEventStart(int code);
-	double getEventEnd(int code);
-	int getEventDay(int code);
-	vector<int> getEventParticipants(int code);
+	int getEventCode(int number);
+	string getEventName(int number);
+	double getEventStart(int number);
+	double getEventEnd(int number);
+	int getEventDay(int number);
+	vector<int> getEventParticipants(int number);
 	int getSize();
 	//with event
 	void addEventToTimetable(event add);
