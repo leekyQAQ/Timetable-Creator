@@ -8,11 +8,8 @@ public:
 	Admin() : User("12345", 123) {}
 	void login();
 	void addID();
-	void addCourses();
+	void addCourses(timeTable& memory);
 	void addMeeting(timeTable &memory);
-	void deleteCourse();
+	void deleteCourse(timeTable &memory);
 	void deleteID();
-	string askFaculty();
-	vector <event> getTeacherSchedule(int id, int selectday, string filename);
-
 };

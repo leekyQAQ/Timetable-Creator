@@ -192,7 +192,7 @@ int main() {
             }
             if (functionChose == 2)
             {
-                user.addCourses();
+                user.addCourses(memory);
             }
             if (functionChose == 3)
             {
@@ -200,7 +200,7 @@ int main() {
             }
             if (functionChose == 4)
             {
-                user.deleteCourse();
+                user.deleteCourse(memory);
             }
             if (functionChose == 5)
             {

@@ -75,34 +75,67 @@ void Admin::addID()
 	file_out.close();
 }
 
-void Admin::addCourses()
+void Admin::addCourses(timeTable &memory)
 {
 	fstream file("Teacherdata.txt");
 	int code, teacherID;
 	string name;
 	vector <int> participants;
-	string filename = askFaculty();
+	bool check;
 	
+	do{
+		check = false;
+		cout << "Enter the course code: ";
+		cin >> code;
+		for (int i = 0; i < memory.getSize(); i++)
+		{
+			if (code == memory.getEventCode(i))
+			{
+				cout << "This code already exist. please try another code." << endl;
+				check = true;
+			}
+		}
 
-	cout << "Enter the course code: ";
-	cin >> code;
+	} while (check);
+
 	cout << "Enter the course name: ";
 	cin >> name;
+
 	cout << "teacher ID list" << endl;
-	string IDhold,pass;
+	string pass;
+	int IDhold;
+	vector <int> teacherIDs;
 
-	while (file>>IDhold>>pass)
+	while (file >> IDhold >> pass)
+	{
 		cout << IDhold << endl;
+		teacherIDs.push_back(IDhold);
+	}
+	file.close();
+		
+	check = true;
+	do
+	{
+		cout << "Enter the Teacher ID: ";
+		cin >> teacherID;
+		for (int i = 0; i < teacherIDs.size(); i++)
+		{
+			if (teacherID == teacherIDs[i])
+			{
+				participants.push_back(teacherID);
+				check = false;
+				break;
+			}
+		}
 
-	cout << "Enter the Teacher ID: ";
-	cin >> teacherID;
-
-	participants.push_back(teacherID);
-
+		if (check)
+			cout << "ID doesn't Exist. please try again." << endl;
+		
+	} while (check == true);
+	
 	event course(code, name, participants);
-	fstream file_out(filename, ios::app);
-	course.saveEventToFile(file_out);
-	file_out.close();
+	memory.addEventToTimetable(course);
+	cout << "Course added sucsessfully. " << endl;
 }
 
 //THIS PART NEED REWRITE
@@ -113,9 +146,7 @@ void Admin::addMeeting(timeTable &memory)
 	string name;
 	vector <int> participants;
 	timeTable teacherSchedule;
-	
-
-	bool timeConflict;
+	bool check, timeConflict;
 
 	cout << "Enter the meeting name: ";
 	cin >> name;
@@ -124,34 +155,44 @@ void Admin::addMeeting(timeTable &memory)
 
 	while (true)
 	{
-		cout << "Enter the participants IDs (enter -1 to end enering): ";
+		cout << "Enter the participants ID (enter -1 to end enering): ";
 		cin >> holdParticipants;
 			if (holdParticipants == -1){break;}
+
+			//check if user already enter the ID
+			check = false;
+			for (int i = 0; i < participants.size(); i++)
+				if (holdParticipants == participants[i])
+					check = true;
+			
 			if (checkID("Teacherdata.txt", holdParticipants))
 			{
-				for (int i = 0; i < memory.getSize(); i++)
-				{
-					//  cout << endl;
+				if (check) {cout << "You already added this ID" << endl;}
 
-					vector<int> ID = memory.getEventParticipants(i);
-					for (int j = 0; j < ID.size(); j++)
+				else {
+					for (int i = 0; i < memory.getSize(); i++)
 					{
-						//  cout << ID[j]<<" ";
-						if (holdParticipants == ID[j] && day == memory.getEventDay(i))
+						//  cout << endl;
+
+						vector<int> ID = memory.getEventParticipants(i);
+						for (int j = 0; j < ID.size(); j++)
 						{
-							// cout << "my id" << m_id;
-							 //temp.out();
-							teacherSchedule.addEventToTimetable(memory.getEvent(i));
-							ID.clear();
+							//  cout << ID[j]<<" ";
+							if (holdParticipants == ID[j] && day == memory.getEventDay(i))
+							{
+								// cout << "my id" << m_id;
+								 //temp.out();
+								teacherSchedule.addEventToTimetable(memory.getEvent(i));
+								ID.clear();
 
-							break;
+								break;
+							}
 						}
-
 					}
+					participants.push_back(holdParticipants);
 				}
-				participants.push_back(holdParticipants);
 			}
-			else { cout << "there's no teacher with given ID"; }
+			else { cout << "ID doesn't mach. Please try again." << endl; }
 	}
 
 	cout << "Schedules for teachers are following:" << endl;
@@ -200,45 +241,36 @@ void Admin::addMeeting(timeTable &memory)
 	//file_out.close();
 }
 
-void Admin::deleteCourse()
+void Admin::deleteCourse(timeTable &memory)
 {
 	int deleteCode;
-	string filename = askFaculty();
-	cout << "Enter the event code that you want to delete: ";
-	cin >> deleteCode;
+	bool check;
 
-	int code, day, participantNum, hold;
-	string name;
-	double startTime, endTime;
-	vector <int> participants;
-	vector <event> courseVec;
-
-	fstream file(filename);
-	while (file >> code >> name >> startTime >> endTime >> day >> participantNum)
-	{ 
-		for (int i = 0; i < participantNum; i++)
+	cout << "Following are the list of course codes in this faculty; " << endl;
+	for (int i = 0; i < memory.getSize(); i++)
+		cout << memory.getEventCode(i) << endl;
+	
+	do
+	{
+		check = true; 
+		cout << "Enter the event code that you want to delete: ";
+		cin >> deleteCode;
+		for (int i = 0; i < memory.getSize(); i++)
 		{
-			file >> hold;
-			participants.push_back(hold);
+			if (deleteCode == memory.getEventCode(i))
+			{
+				check = false;
+				break;
+			}
 		}
 
-		if (code != deleteCode)
-		{
-			event course(code, name, startTime, endTime, day, participants);
-			courseVec.push_back(course);
-		}
+		if (check)
+			cout << "Code does't mach. Please try again." << endl;
+	} while (check);
+	
 
-		participants.clear();
-	}
-
-	file.clear();
-	file.close();
-
-	timeTable updatedData(courseVec);
-	updatedData.outTimeTable();
-	cout << endl;
-	updatedData.saveToFile(file, filename); 
-	file.close();
+	memory.deletEvent(deleteCode);
+	cout << "Event deleted" << endl;
 
 }
 
@@ -283,77 +315,4 @@ void Admin::deleteID()
 		file_out << IDs[i] << " " << passwords[i] << endl;
 
 	file_out.close();
-}
-
-
-string Admin::askFaculty()
-{
-	int faculty;
-	string filename;
-	cout << "1. Faculty of Health Sciences." << endl;
-	cout << "2. Faculty of Science." << endl;
-	cout << "3. Faculty of Engineering." << endl;
-	cout << "4. Faculty of Humanities." << endl;
-	cout << "5. Faculty of Social Science." << endl;
-	cout << "6. Faculty of Business." << endl;
-	cout << "Enter the faculty (1 - 6): ";
-	cin >> faculty;
-
-	switch (faculty)
-	{
-	case 1:
-		filename = "healthSciences_eventList.txt";
-		break;
-	case 2:
-		filename = "science_eventList.txt";
-		break;
-	case 3:
-		filename = "engineering_eventList.txt";
-		break;
-	case 4:
-		filename = "humanities_eventList.txt";
-		break;
-	case 5:
-		filename = "socialScience_eventList.txt";
-		break;
-	case 6:
-		filename = "Business_eventList.txt";
-		break;
-
-	}
-
-	return filename;
-}
-
-
-vector <event> Admin::getTeacherSchedule(int id, int selectday,string filename)
-{
-	vector <event>schedule; 
-	int code, day,numParticipants, holdParticipant;
-	string name;
-	double startTime, endTime;
-	vector<int> participants;
-	bool mach;
-
-	ifstream file(filename);
-	while (!file.eof())
-	{
-		file >> code >> name >> startTime >> endTime >> day >> numParticipants;
-		mach = false;
-		for (int i = 0; i < numParticipants; i++)
-		{
-			file >> holdParticipant;
-			participants.push_back(holdParticipant);
-			if (holdParticipant == id&&day==selectday)
-				mach = true;
-		}
-
-		if (mach)
-		{
-			event holdEvent(code, name, startTime, endTime, day, participants);
-			schedule.push_back(holdEvent);
-		}
-	}
-
-	return schedule;
 }
