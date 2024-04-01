@@ -127,30 +127,31 @@ void Admin::addMeeting(timeTable &memory)
 		cout << "Enter the participants IDs (enter -1 to end enering): ";
 		cin >> holdParticipants;
 			if (holdParticipants == -1){break;}
-
-
-		for (int i = 0; i < memory.getSize(); i++)
-		{
-			//  cout << endl;
-			
-			vector<int> ID = memory.getEventParticipants(i);
-			for (int j = 0; j < ID.size(); j++)
+			if (checkID("Teacherdata.txt", holdParticipants))
 			{
-				//  cout << ID[j]<<" ";
-				if (holdParticipants == ID[j]&&day==memory.getEventDay(i))
+				for (int i = 0; i < memory.getSize(); i++)
 				{
-					// cout << "my id" << m_id;
-					 //temp.out();
-					teacherSchedule.addEventToTimetable(memory.getEvent(i));
-					ID.clear();
-					
-					break;
+					//  cout << endl;
+
+					vector<int> ID = memory.getEventParticipants(i);
+					for (int j = 0; j < ID.size(); j++)
+					{
+						//  cout << ID[j]<<" ";
+						if (holdParticipants == ID[j] && day == memory.getEventDay(i))
+						{
+							// cout << "my id" << m_id;
+							 //temp.out();
+							teacherSchedule.addEventToTimetable(memory.getEvent(i));
+							ID.clear();
+
+							break;
+						}
+
+					}
 				}
-				
+				participants.push_back(holdParticipants);
 			}
-		}
-	participants.push_back(holdParticipants);
-		
+			else { cout << "there's no teacher with given ID"; }
 	}
 
 	cout << "Schedules for teachers are following:" << endl;

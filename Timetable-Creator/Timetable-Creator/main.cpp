@@ -11,11 +11,12 @@ using namespace std;
 
 int main() {
     cout << "Welcome to the program" << endl;
-
+    
     string department;
     fstream file;
     int faculty;
     string filename;
+    do{
     cout << "1. Faculty of Health Sciences." << endl;
     cout << "2. Faculty of Science." << endl;
     cout << "3. Faculty of Engineering." << endl;
@@ -29,28 +30,32 @@ int main() {
     {
     case 1:
         filename = "healthSciences_eventList.txt";
+        department = "healthSciences";
         break;
     case 2:
         filename = "science_eventList.txt";
+        department = "science";
         break;
     case 3:
         filename = "engineering_eventList.txt";
+        department = "engineering";
         break;
     case 4:
         filename = "humanities_eventList.txt";
+        department = "humanities";
         break;
     case 5:
         filename = "socialScience_eventList.txt";
+        department = "socialScience";
         break;
     case 6:
+        department = "Business";
         filename = "Business_eventList.txt";
         break;
-
     }
-
         file.open(filename);
         if (!file.is_open()) {
-            cerr << "Could not open file for department: " << department << endl;
+            cerr << "Could not open file for department "<< endl;
 
         }
     } while (!file.is_open());

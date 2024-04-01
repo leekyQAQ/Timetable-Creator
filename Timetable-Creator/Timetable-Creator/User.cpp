@@ -15,23 +15,24 @@ User::User(string password, int id) {
 	m_id = id;
 }
 
-bool User::login(fstream& file) {
-	// ask the user for their id
-	int inputId;
-	cout << "Enter your user ID: ";
-	cin >> inputId;
-	// make: geting each line the file and than check if the id is real or not
-	int storedId;
-	string storedPassword;
-	bool idFound = false;
-   // vector<string> allStoredPassword;
-    //vector<int> allStoredID;
-	// if it's real then ask to user for password
-	while (file >> storedId >> storedPassword) {
-       // allStoredID.push_back(storedId);
-       // allStoredPassword.push_back(storedPassword);
-		if (storedId == inputId) {
-			idFound = true;
+void User::login(fstream& file) {
+    // ask the user for their id
+    int inputId;
+    int storedId; 
+    string storedPassword;
+    bool idFound = true;
+    do{
+    cout << "Enter your user ID: ";
+    cin >> inputId;
+    // make: geting each line the file and than check if the id is real or not
+    // vector<string> allStoredPassword;
+     //vector<int> allStoredID;
+     // if it's real then ask to user for password
+    while (file >> storedId >> storedPassword) {
+        // allStoredID.push_back(storedId);
+        // allStoredPassword.push_back(storedPassword);
+        if (storedId == inputId) {
+            idFound = false;
             string inputPassword;
             do {
                 
@@ -50,12 +51,14 @@ bool User::login(fstream& file) {
 
             break;
         }
-	}
-	// than check the password in the same file to see if the password is correct
-	if (!idFound) {
-		cout << "User ID not found. Please try again." << endl;
-		return false;
-	}
+    }
+    // than check the password in the same file to see if the password is correct
+    if (idFound) {
+        cout << "User ID not found. Please try again." << endl;
+        file.clear();
+        file.seekg(0, ios::beg);
+    }
+}while (idFound);
 	/*string inputPassword;
 	cout << "Enter your password: "<< endl;
 	cin >> inputPassword;
@@ -77,35 +80,36 @@ void User::signin(fstream& file) {
     int inputId;
     int storedId;
     string storedPassword;
-    bool idExists = false;
+    bool idExists = false;        vector<int> ids;
+        vector<string> passwords;
+    do {
+        // User input
+        cout << "Enter your user ID: ";
+        cin >> inputId;
 
-    // User input
-    cout << "Enter your user ID: ";
-    cin >> inputId;
+        // Vectors to store user IDs and passwords
 
-    // Vectors to store user IDs and passwords
-    vector<int> ids;
-    vector<string> passwords;
 
-    // Read the IDs and passwords from the file into the vectors and checks if the id is real
-    while (file >> storedId >> storedPassword) {
-        ids.push_back(storedId);  // Add the ID to the IDs vector
-        passwords.push_back(storedPassword);  // Add the password to the passwords vector
-        if (storedId == inputId) {
-            idExists = true;  
+        // Read the IDs and passwords from the file into the vectors and checks if the id is real
+        while (file >> storedId >> storedPassword) {
+            ids.push_back(storedId);  // Add the ID to the IDs vector
+            passwords.push_back(storedPassword);  // Add the password to the passwords vector
+            if (storedId == inputId) {
+                idExists = true;
+            }
+        }
+
+        file.clear();
+        file.seekg(0, ios::beg);
+        file.seekp(0, ios::beg);
+
+        // If the input ID does not exist in the file, print an error message and return
+        if (!idExists) {
+            cout << "User ID does not exist. Please choose a different ID." << endl;
+
         }
     }
-
-    file.clear();
-    file.seekg(0, ios::beg);
-    file.seekp(0, ios::beg);
-
-    // If the input ID does not exist in the file, print an error message and return
-    if (!idExists) {
-        cout << "User ID does not exist. Please choose a different ID." << endl;
-        return;
-    }
-
+    while (!idExists);
     // Ask the user to create a new password
     string newPassword;
     cout << "Create a new password: ";
