@@ -34,5 +34,5 @@ public:
 	void outTimeTable();
 
 
-	timeTable operator+(timeTable);
+
 };

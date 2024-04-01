@@ -233,11 +233,3 @@ void timeTable::outTimeTable()
 
 }
 
-timeTable timeTable::operator+(timeTable t1)
-{
-	for (int i = 0; i < t1.getSize(); i++)
-	{
-		m_timeTable.push_back(t1.getEvent(i));
-	}
-	return m_timeTable;
-}
