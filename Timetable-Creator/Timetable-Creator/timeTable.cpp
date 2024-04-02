@@ -221,6 +221,20 @@ void timeTable::saveToFile(fstream& file, string fileName)
 		m_timeTable[i].saveEventToFile(file);
 	}
 }
+void timeTable::sort()
+{
+	int n = m_timeTable.size();
+	for (int i = 0; i < n - 1; ++i) {
+		for (int j = 0; j < n - i - 1; ++j) {
+			if (m_timeTable[j].getEventDay() > m_timeTable[j + 1].getEventDay()) {
+				
+				event temp = m_timeTable[j];
+				m_timeTable[j] = m_timeTable[j + 1];
+				m_timeTable[j + 1] = temp;
+			}
+		}
+	}
+}
 
 // Output the timetable
 void timeTable::outTimeTable()

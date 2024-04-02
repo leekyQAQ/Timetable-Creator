@@ -52,7 +52,7 @@ void Student::selecttimetable(timeTable memory) {
         event temp = memory.getEvent(i);
         if (temp.getEventDay() != -1&&temp.getEventCode() >= 0)
         {
-            cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+            cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t\t" << temp.getEventStart() << "\t" << temp.getEventEnd() << "\t\t\t\t" << temp.getEventDay() << endl;
         }
     }
 
@@ -106,11 +106,13 @@ void Student::deletevent(timeTable memory) {
 }
 
 ostream& operator<<(ostream& out, Student student) {
+   
     timeTable studenttimetable = student.gettimetable();
+    studenttimetable.sort();
     out << "code" << "\t" << "course name" << "\t" << "start and end time of the course" << "\t" << "day" << "\t" << endl;
     for (int i = 0; i < studenttimetable.getSize(); i++) {
         event temp = studenttimetable.getEvent(i);
-        out << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+        out << temp.getEventCode() << "\t" << temp.getEventName() << "\t\t" << temp.getEventStart() << "\t" << temp.getEventEnd() << "\t\t\t\t" << temp.getEventDay() << endl;
     }
     return out;
 }

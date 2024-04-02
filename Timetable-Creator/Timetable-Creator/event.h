@@ -15,6 +15,7 @@ protected:
 	int m_day;
 	vector<int> m_participants;
 public:
+	event();
 	event(int code, string name, double start, double end,int day, vector<int> ID);
 	event(int code, string name, vector<int> ID);
 

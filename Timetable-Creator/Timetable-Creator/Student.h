@@ -24,7 +24,7 @@ public:
     void setTimetable(timeTable memory);
     void selecttimetable(timeTable memory);
     void deletevent(timeTable memory);
-
+ 
     // Overloading the insertion (<<) operator to print the personal timetable
  
 };

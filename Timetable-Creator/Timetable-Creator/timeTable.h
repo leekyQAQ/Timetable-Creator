@@ -30,7 +30,7 @@ public:
 	//with memory
 	void saveToFile(fstream& file, string fileName);
 	void updateFrom(timeTable timetable);
-	
+	void sort();
 	void outTimeTable();
 
 

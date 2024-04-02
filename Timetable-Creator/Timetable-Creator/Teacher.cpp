@@ -85,10 +85,11 @@ void Teacher::changetime() {
 }
 ostream& operator<<(ostream& out, Teacher teacher) {
     timeTable teachertimetable = teacher.gettimetable();
+    teachertimetable.sort();
     out << "code" << "\t" << "course name" << "\t" << "start and end time of the course" << "\t" << "day" << "\t" << endl;
     for (int i = 0; i < teachertimetable.getSize(); i++) {
         event temp = teachertimetable.getEvent(i);
-        out << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+        out << temp.getEventCode() << "\t" << temp.getEventName() << "\t\t" << temp.getEventStart() << "\t" << temp.getEventEnd() << "\t\t\t\t" << temp.getEventDay() << endl;
     }
     return out;
 }

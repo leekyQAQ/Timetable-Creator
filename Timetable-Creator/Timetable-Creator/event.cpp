@@ -1,4 +1,8 @@
 #include "event.h"
+event::event()
+{
+	
+}
 event::event(int code, string name, double start, double end, int day, vector<int> ID)
 {
 	m_code = code;
