@@ -152,6 +152,18 @@ void Admin::addMeeting(timeTable &memory)
 	cin >> name;
 	cout << "Enter the day of meeting: ";
 	cin >> day;
+	fstream file("Teacherdata.txt");
+	cout << "teacher ID list" << endl;
+	string pass;
+	int IDhold;
+	
+
+	while (file >> IDhold >> pass)
+	{
+		cout << IDhold << endl;
+		
+	}
+	file.close();
 
 	while (true)
 	{
@@ -248,7 +260,7 @@ void Admin::deleteCourse(timeTable &memory)
 
 	cout << "Following are the list of course codes in this faculty; " << endl;
 	for (int i = 0; i < memory.getSize(); i++)
-		cout << memory.getEventCode(i) << endl;
+		cout << memory.getEventCode(i)<<"  "<<memory.getEventName(i) << endl;
 	
 	do
 	{
@@ -292,7 +304,7 @@ void Admin::deleteID()
 
 	do
 	{
-		cout << "Enter the ID taht you want to delete: ";
+		cout << "Enter the ID that you want to delete: ";
 		cin >> ID;
 		check = checkID(filename, ID);
 		if (check == false)
