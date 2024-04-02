@@ -106,7 +106,9 @@ void Student::deletevent(timeTable memory) {
 }
 
 ostream& operator<<(ostream& out, Student student) {
+   
     timeTable studenttimetable = student.gettimetable();
+    studenttimetable.sort();
     out << "code" << "\t" << "course name" << "\t" << "start and end time of the course" << "\t" << "day" << "\t" << endl;
     for (int i = 0; i < studenttimetable.getSize(); i++) {
         event temp = studenttimetable.getEvent(i);
