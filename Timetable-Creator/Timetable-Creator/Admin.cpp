@@ -169,35 +169,45 @@ void Admin::addMeeting(timeTable &memory)
 	{
 		cout << "Enter the participants ID (enter -1 to end enering): ";
 		cin >> holdParticipants;
-			if (holdParticipants == -1){break;}
+		if (holdParticipants == -1) { break; }
 
-			//check if user already enter the ID
-			check = false;
-			for (int i = 0; i < participants.size(); i++)
-				if (holdParticipants == participants[i])
-					check = true;
+		//check if user already enter the ID
+		check = false;
+		for (int i = 0; i < participants.size(); i++)
+			if (holdParticipants == participants[i])
+			{check = true;}
 			
 			if (checkID("Teacherdata.txt", holdParticipants))
 			{
-				if (check) {cout << "You already added this ID" << endl;}
+				if (check) {cout << "You already added this ID" << endl;}//check if it's same ID
 
 				else {
-					for (int i = 0; i < memory.getSize(); i++)
+					for (int i = 0; i < memory.getSize(); i++)//loop the memory to check
 					{
-						//  cout << endl;
 
 						vector<int> ID = memory.getEventParticipants(i);
-						for (int j = 0; j < ID.size(); j++)
+						for (int j = 0; j < ID.size(); j++)//loop the ID  to find same ID
 						{
-							//  cout << ID[j]<<" ";
-							if (holdParticipants == ID[j] && day == memory.getEventDay(i))
+							
+							if (holdParticipants == ID[j] && day == memory.getEventDay(i))//pick event with same ID/Day 
 							{
-								// cout << "my id" << m_id;
-								 //temp.out();
-								teacherSchedule.addEventToTimetable(memory.getEvent(i));
-								ID.clear();
+								
+								if(teacherSchedule.getSize() == 0){ teacherSchedule.addEventToTimetable(memory.getEvent(i)); }
+								else {
+									bool existCheck = true;
+									for (event exist : teacherSchedule.getVector())//check if it's exists event
+									{
+										if (exist.getEventCode() == memory.getEventCode(i))
+										{
+											existCheck = false;
+										}
 
-								break;
+									}
+									if(existCheck){teacherSchedule.addEventToTimetable(memory.getEvent(i)); }
+								}
+								ID.clear();//reset te holder
+
+								break;//stop looping rest of id
 							}
 						}
 					}
