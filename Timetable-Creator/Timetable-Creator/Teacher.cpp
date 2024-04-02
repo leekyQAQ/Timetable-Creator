@@ -41,41 +41,43 @@ void Teacher::changetime() {
         int code;
         cout << "Enter course code:" << endl;
         cin >> code;
-        bool chaged = false;
-        for (int j = 0; j < m_timetable.getSize(); j++) {
-            
-            event temp2 = m_timetable.getEvent(j);
-            if (temp2.getEventCode() == code&& temp2.getEventDay()==-1) {
-                double start, end;
+        if (code < 0) { cout << "you don't have permit to change this event's time"; }
+        else {
+            bool chaged = false;
+            for (int j = 0; j < m_timetable.getSize(); j++) {
+
+                event temp2 = m_timetable.getEvent(j);
+                if (temp2.getEventCode() == code && temp2.getEventDay() == -1) {
+                    double start, end;
                     int day;
                     bool loop = false;
-                do {
-                    cout << "Change the star time now" << endl;
-                    cin >> start;
-                    cout << "Change the end time now" << endl;
-                    cin >> end;
-                    cout << "Change the day now(1-5)" << endl;
-                    cin >> day;
-                    temp2.setEventStart(start);
-                    temp2.setEventEnd(end);
-                    temp2.setEventDay(day);
-                    m_timetable.updateFrom(temp2);
-                    loop = m_timetable.timeConfilctCheck();
-                    if(loop)
-                    {
-                       
-                        cout << "There is a time conflict" << endl;
-                    }
-                    
-                } while (loop);
-                chaged = true;
-            }
-           
-        }
-        if (chaged==false) {
-            cout << "You don't have any event with the same code that requires a time assignment." << endl;
-        }
+                    do {
+                        cout << "Change the star time now" << endl;
+                        cin >> start;
+                        cout << "Change the end time now" << endl;
+                        cin >> end;
+                        cout << "Change the day now(1-5)" << endl;
+                        cin >> day;
+                        temp2.setEventStart(start);
+                        temp2.setEventEnd(end);
+                        temp2.setEventDay(day);
+                        m_timetable.updateFrom(temp2);
+                        loop = m_timetable.timeConfilctCheck();
+                        if (loop)
+                        {
 
+                            cout << "There is a time conflict" << endl;
+                        }
+
+                    } while (loop);
+                    chaged = true;
+                }
+
+            }
+            if (chaged == false) {
+                cout << "You don't have any event with the same code that requires a time assignment." << endl;
+            }
+        }
    /* }
     if (want == "NO") {
         return;

@@ -11,35 +11,51 @@ using namespace std;
 
 int main() {
     cout << "Welcome to the program" << endl;
-    string filename;
+    
     string department;
     fstream file;
-    do {
-        //choose file to read
-        cout << "Which department: (Health Sciences / Science / Engineering / Humanities / Social Science / Business)" << endl;
-        cin >> department;
-        if (department == "Engineering") {
-            filename = "engineering_eventList.txt";
-        }
-        else if (department == "Science") {
-            filename = "science_eventList.txt";
-        }
-        else if (department == "Health Sciences") {
-            filename = "healthSciences_eventList.txt";
-        }
-        else if (department == "Humanities") {
-            filename = "humanities_eventList.txt";
-        }
-        else if (department == "Business") {
-            filename = "business_eventList.txt";
-        }
-        else if (department == "Social Science") {
-            filename = "socialScience_eventList.txt";
-        }
+    int faculty;
+    string filename;
+    do{
+    cout << "1. Faculty of Health Sciences." << endl;
+    cout << "2. Faculty of Science." << endl;
+    cout << "3. Faculty of Engineering." << endl;
+    cout << "4. Faculty of Humanities." << endl;
+    cout << "5. Faculty of Social Science." << endl;
+    cout << "6. Faculty of Business." << endl;
+    cout << "Enter the faculty (1 - 6): ";
+    cin >> faculty;
 
+    switch (faculty)
+    {
+    case 1:
+        filename = "healthSciences_eventList.txt";
+        department = "healthSciences";
+        break;
+    case 2:
+        filename = "science_eventList.txt";
+        department = "science";
+        break;
+    case 3:
+        filename = "engineering_eventList.txt";
+        department = "engineering";
+        break;
+    case 4:
+        filename = "humanities_eventList.txt";
+        department = "humanities";
+        break;
+    case 5:
+        filename = "socialScience_eventList.txt";
+        department = "socialScience";
+        break;
+    case 6:
+        department = "Business";
+        filename = "Business_eventList.txt";
+        break;
+    }
         file.open(filename);
         if (!file.is_open()) {
-            cerr << "Could not open file for department: " << department << endl;
+            cerr << "Could not open file for department "<< endl;
 
         }
     } while (!file.is_open());
@@ -103,9 +119,9 @@ int main() {
                     cin >> newchoice;
                     if (newchoice == 1) {
                         user.selecttimetable(memory);
-                        cout << user;
+                       // cout << user;
                         memory.updateFrom(user.gettimetable());
-                        memory.outTimeTable();
+                       // memory.outTimeTable();
                     }
                     else {
                         user.deletevent(memory);
@@ -163,7 +179,35 @@ int main() {
         IDfile.close();
     }
     if(choice==3) {
-        cout << "placeholder for admin interface" << endl;
+        Admin user;
+        user.login();
+        int functionChose;
+        do 
+        {
+            cout << "Add ID(1)/ Add course(2)/ Add meeting(3)/ Delete event(4)/ Delete ID(5) / Exit(6)"<< endl;
+            cin >> functionChose;
+            if (functionChose == 1)
+            {
+                user.addID();
+            }
+            if (functionChose == 2)
+            {
+                user.addCourses(memory);
+            }
+            if (functionChose == 3)
+            {
+                user.addMeeting(memory);
+            }
+            if (functionChose == 4)
+            {
+                user.deleteCourse(memory);
+            }
+            if (functionChose == 5)
+            {
+                user.deleteID();
+            }
+
+        } while (functionChose != 6);
     }
 
     memory.saveToFile(file, filename);

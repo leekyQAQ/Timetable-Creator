@@ -50,7 +50,8 @@ void Student::selecttimetable(timeTable memory) {
     cout << "code" << "\t" << "course name" << "\t" << "start and end time of the course" << "\t" << "day" << "\t" << endl;
     for (int i = 0; i < memory.getSize(); i++) {
         event temp = memory.getEvent(i);
-        if (temp.getEventDay() != -1) {
+        if (temp.getEventDay() != -1&&temp.getEventCode() >= 0)
+        {
             cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
         }
     }
