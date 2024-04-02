@@ -119,9 +119,9 @@ int main() {
                     cin >> newchoice;
                     if (newchoice == 1) {
                         user.selecttimetable(memory);
-                        cout << user;
+                       // cout << user;
                         memory.updateFrom(user.gettimetable());
-                        memory.outTimeTable();
+                       // memory.outTimeTable();
                     }
                     else {
                         user.deletevent(memory);
