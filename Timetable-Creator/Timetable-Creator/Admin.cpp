@@ -138,7 +138,7 @@ void Admin::addCourses(timeTable &memory)
 	cout << "Course added sucsessfully. " << endl;
 }
 
-//THIS PART NEED REWRITE
+
 void Admin::addMeeting(timeTable &memory)
 {
 	int code, holdParticipants, day;
@@ -208,11 +208,11 @@ void Admin::addMeeting(timeTable &memory)
 	}
 
 	cout << "Schedules for teachers are following:" << endl;
-	cout << "code  name  start-end  day   " << endl;
+	cout << "code    name    start-end        day   " << endl;
 	for (int i = 0; i < teacherSchedule.getSize(); i++)
 	{
 		event temp = teacherSchedule.getEvent(i);
-		cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "-" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
+		cout << temp.getEventCode() << "\t" << temp.getEventName() << "\t" << temp.getEventStart() << "\t" << temp.getEventEnd() << "\t" << temp.getEventDay() << endl;
 	}
 	//checkCode
 	bool codeCheck = false;
@@ -245,7 +245,7 @@ void Admin::addMeeting(timeTable &memory)
 	} while (timeConflict);
 	
 	event meeting(code, name, startTime, endTime, day, participants);
-	meeting.out();
+	//meeting.out();
 	memory.addEventToTimetable(meeting);
 	//fstream file_out(filename, ios::app);
 
